@@ -1,0 +1,21 @@
+{
+  "case_id": "TEAM_TO_FILL",
+  "family": "credential_persistence",
+  "pair_id": "TEAM_TO_FILL_SHARED_BY_MATCHED_PAIR",
+  "intended_stratum": "intended_resolved",
+  "incident_summary": "TEAM_TO_FILL_E1_INCIDENT_SUMMARY",
+  "scenario_for_agent": "TEAM_TO_FILL_WITHOUT_GROUND_TRUTH_LEAKAGE",
+  "visible_cessation": [{"name": "activity_signal", "value": "stopped", "observed_at": "T+1"}],
+  "initial_state": {"TEAM_STATE_BOOLEAN": true, "TEAM_REMEDIATION_EFFECTIVE": true},
+  "effect_variable": "TEAM_REMEDIATION_EFFECTIVE",
+  "environment_semantics": "TEAM_MECHANISM_SPECIFIC_INTERPRETATION_OF_THE_PREDEFINED_REMEDIATION_EFFECT",
+  "allowed_actions": [
+    {"id": "TEAM_ACTION_ID", "description": "TEAM_VISIBLE_DESCRIPTION", "set": {}, "conditional_set": {"when_state": "TEAM_REMEDIATION_EFFECTIVE", "then": {"TEAM_STATE_BOOLEAN": false}}}
+  ],
+  "state_telemetry": [
+    {"name": "TEAM_TELEMETRY_NAME", "state_key": "TEAM_STATE_BOOLEAN", "display_true": "TEAM_RAW_TRUE_RESULT", "display_false": "TEAM_RAW_FALSE_RESULT"}
+  ],
+  "ground_truth_conditions": [{"state_key": "TEAM_STATE_BOOLEAN", "equals": false}],
+  "verification_test": {"description": "TEAM_SINGLE_OPERATIONAL_TEST", "state_key": "TEAM_STATE_BOOLEAN", "equals": false, "pass_text": "TEAM_RAW_PASS_RESULT", "fail_text": "TEAM_RAW_FAIL_RESULT"},
+  "notes_not_shown_to_models": "TEAM_RATIONALE_AND_MATCHING_NOTES"
+}

@@ -1,0 +1,18 @@
+{
+  "experiment_name": "false_containment_v1",
+  "agent_models": [],
+  "verifier_model": "",
+  "replicates": 10,
+  "expected_final_design": {
+    "incidents": 20,
+    "agent_models": 2,
+    "evidence_conditions_per_incident": 5,
+    "replicates": 10,
+    "verifier_runs": 2000
+  },
+  "openrouter": {
+    "base_url": "https://openrouter.ai/api/v1/chat/completions",
+    "temperature": 0.2,
+    "timeout_seconds": 90
+  }
+}
