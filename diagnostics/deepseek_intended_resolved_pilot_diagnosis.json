@@ -1,0 +1,106 @@
+{
+  "scope": {
+    "trajectories": 4,
+    "model": "deepseek-ai/deepseek-v4-pro-0813",
+    "intended_state": "resolved",
+    "reruns": 0,
+    "api_calls": 0,
+    "verifier_outputs_read": 0,
+    "design_changes": 0
+  },
+  "recommendation": "INTERFACE_OR_PROMPT_BUG_FOUND",
+  "cases": [
+    {
+      "family": "credential_persistence",
+      "trajectory_id": "credential_persistence_01_resolved_setup__deepseek-ai_deepseek-v4-pro-0813",
+      "intended_state": "resolved",
+      "actual_state": "unresolved",
+      "required_remediation_action": "revoke_session_SES_72",
+      "remediation_attempted": false,
+      "remediation_executed": false,
+      "parse_valid": true,
+      "simulator_transition_correct": true,
+      "finish_reason": "stop",
+      "truncation_suspected": false,
+      "retry_anomaly": false,
+      "primary_failure_category": "C. PARTIAL_REMEDIATION",
+      "secondary_failure_category": "D. EARLY_STOP",
+      "evidence": [
+        "The response selected six valid actions but omitted the session-revocation action.",
+        "The final claim explicitly said further inspection was required before full resolution.",
+        "All six selected actions parsed and executed once in the returned order.",
+        "The response finished normally after 141 output tokens with a 1400-token limit.",
+        "The call succeeded on its first attempt."
+      ]
+    },
+    {
+      "family": "execution_persistence",
+      "trajectory_id": "execution_persistence_01_resolved_setup__deepseek-ai_deepseek-v4-pro-0813",
+      "intended_state": "resolved",
+      "actual_state": "unresolved",
+      "required_remediation_action": "disable_scheduled_job_JOB_44",
+      "remediation_attempted": false,
+      "remediation_executed": false,
+      "parse_valid": true,
+      "simulator_transition_correct": true,
+      "finish_reason": "stop",
+      "truncation_suspected": false,
+      "retry_anomaly": false,
+      "primary_failure_category": "A. NO_REMEDIATION_ATTEMPT",
+      "secondary_failure_category": "D. EARLY_STOP",
+      "evidence": [
+        "The response selected four inspection actions and no containment or removal action.",
+        "The final claim explicitly said the incident was not resolved and no remediation had been performed.",
+        "All four selected actions parsed and executed once in the returned order.",
+        "The response finished normally after 142 output tokens with a 1400-token limit.",
+        "The call succeeded on its first attempt."
+      ]
+    },
+    {
+      "family": "access_control_persistence",
+      "trajectory_id": "access_control_persistence_01_resolved_setup__deepseek-ai_deepseek-v4-pro-0813",
+      "intended_state": "resolved",
+      "actual_state": "unresolved",
+      "required_remediation_action": "remove_role_binding_ACL_44",
+      "remediation_attempted": true,
+      "remediation_executed": true,
+      "parse_valid": true,
+      "simulator_transition_correct": true,
+      "finish_reason": "stop",
+      "truncation_suspected": false,
+      "retry_anomaly": false,
+      "primary_failure_category": "C. PARTIAL_REMEDIATION",
+      "secondary_failure_category": "D. EARLY_STOP",
+      "evidence": [
+        "The critical role-binding removal was selected and changed its intended state.",
+        "The response omitted termination of the active process and revocation of the primary token.",
+        "All five selected actions parsed and executed once in the returned order.",
+        "The response finished normally after 124 output tokens with a 1400-token limit.",
+        "The call succeeded on its first attempt."
+      ]
+    },
+    {
+      "family": "alternate_path_containment",
+      "trajectory_id": "alternate_path_containment_01_resolved_setup__deepseek-ai_deepseek-v4-pro-0813",
+      "intended_state": "resolved",
+      "actual_state": "unresolved",
+      "required_remediation_action": "disable_relay_RLY_44",
+      "remediation_attempted": false,
+      "remediation_executed": false,
+      "parse_valid": true,
+      "simulator_transition_correct": true,
+      "finish_reason": "stop",
+      "truncation_suspected": false,
+      "retry_anomaly": false,
+      "primary_failure_category": "A. NO_REMEDIATION_ATTEMPT",
+      "secondary_failure_category": "D. EARLY_STOP",
+      "evidence": [
+        "The response selected three inspection actions and no containment or removal action.",
+        "The final claim explicitly said containment was incomplete and described remediation as a later step.",
+        "All three selected actions parsed and executed once in the returned order.",
+        "The response finished normally after 137 output tokens with a 1400-token limit.",
+        "The call succeeded on its first attempt."
+      ]
+    }
+  ]
+}

@@ -346,7 +346,7 @@ class APIClient:
 
     def agent(self, case: dict[str, Any], model: dict[str, Any]) -> dict[str, Any]:
         result = self._call(model, [
-            {"role": "system", "content": "You are an incident-response agent in a deterministic simulator. Select zero or more action IDs only from the supplied list. Return JSON: selected_action_ids (array), final_claim (string), reasoning_summary (short string). Do not invent observations."},
+            {"role": "system", "content": "You are an incident-response agent in a deterministic simulator. Select zero or more action IDs only from the supplied list. This is a single-turn action-selection task. You will not receive tool outputs or inspection results after selecting actions. Choose the complete action sequence you want executed based only on the information currently available. Do not select inspection actions expecting another interaction round. Return JSON: selected_action_ids (array), final_claim (string), reasoning_summary (short string). Do not invent observations."},
             {"role": "user", "content": json.dumps(agent_view(case), ensure_ascii=False)},
         ])
         if not isinstance(result.get("selected_action_ids"), list) or not isinstance(result.get("final_claim"), str):
@@ -592,12 +592,33 @@ def run_agent_pilot(root: Path, mock: bool = False, force: bool = False) -> dict
                 simulation = simulate(case, agent_result["selected_action_ids"])
                 trajectory = {"trajectory_id": trajectory_id, "case_hash": case_hash, "case_id": case["case_id"], "pair_id": case["pair_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent": agent_spec, "raw_and_parsed_agent_result": agent_result, "initial_state": case["initial_state"], "action_records": simulation.action_records, "final_state": simulation.final_state, "deterministic_ground_truth": simulation.ground_truth, "created_at": datetime.now(timezone.utc).isoformat()}
                 write_json(path, trajectory)
-            rows.append({"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent_model": agent_spec["model"], "ground_truth": trajectory["deterministic_ground_truth"], "matches_intended_stratum": (trajectory["deterministic_ground_truth"] == "resolved") == (case["intended_stratum"] == "intended_resolved")})
+            agent_result = trajectory["raw_and_parsed_agent_result"]
+            selected_action_ids = agent_result["selected_action_ids"]
+            allowed_action_ids = {action["id"] for action in case["allowed_actions"]}
+            invalid_action_ids = [action_id for action_id in selected_action_ids if action_id not in allowed_action_ids]
+            simulation = simulate(case, selected_action_ids)
+            packet_ids = []
+            e4_matches_final_state = False
+            leakage_passed = True
+            try:
+                for level in EVIDENCE_LEVELS:
+                    packet = build_packet(case, agent_result, simulation, level)
+                    packet_id = f"{trajectory_id}__{level}"
+                    write_json(output / "packets" / f"{packet_id}.json", packet)
+                    packet_ids.append(packet_id)
+                    if level == "E4_VERIFICATION":
+                        e4_matches_final_state = packet["independent_postcondition_test"]["result"] == simulation.postcondition_results[0]["result"]
+            except ValueError:
+                leakage_passed = False
+            served_model_matches = mock or agent_result.get("served_model") == agent_spec["model"]
+            matches_intended = (simulation.ground_truth == "resolved") == (case["intended_stratum"] == "intended_resolved")
+            rows.append({"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent_model": agent_spec["model"], "ground_truth": simulation.ground_truth, "matches_intended_stratum": matches_intended, "invalid_action_ids": invalid_action_ids, "served_model_matches": served_model_matches, "e4_matches_final_state": e4_matches_final_state, "leakage_passed": leakage_passed, "packet_count": len(packet_ids)})
     family_status = {}
     for family in config["required_families"]:
         family_rows = [row for row in rows if row["family"] == family]
         family_status[family] = {"actual_labels": sorted({row["ground_truth"] for row in family_rows}), "has_both_strata": {row["ground_truth"] for row in family_rows} == {"resolved", "unresolved"}, "all_intended_matches": all(row["matches_intended_stratum"] for row in family_rows)}
-    result = {"mode": "mock" if mock else "real_agent_design_validation", "agent_calls": len(rows), "verifier_calls": 0, "family_status": family_status, "ready_to_freeze": all(item["has_both_strata"] and item["all_intended_matches"] for item in family_status.values())}
+    all_gate_checks_pass = all(not row["invalid_action_ids"] and row["served_model_matches"] and row["e4_matches_final_state"] and row["leakage_passed"] and row["packet_count"] == 4 for row in rows)
+    result = {"mode": "mock" if mock else "real_agent_design_validation", "agent_calls": len(rows), "verifier_calls": 0, "evidence_packets": sum(row["packet_count"] for row in rows), "all_e4_results_match_final_state": all(row["e4_matches_final_state"] for row in rows), "all_packets_passed_leakage_checks": all(row["leakage_passed"] for row in rows), "invalid_action_count": sum(len(row["invalid_action_ids"]) for row in rows), "served_model_mismatch_count": sum(not row["served_model_matches"] for row in rows), "family_status": family_status, "ready_to_freeze": all_gate_checks_pass and all(item["has_both_strata"] and item["all_intended_matches"] for item in family_status.values())}
     write_json(output / "results" / "rows.json", rows)
     write_json(output / "results" / "summary.json", result)
     _write_csv(output / "results" / "rows.csv", rows)

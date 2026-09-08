@@ -121,7 +121,19 @@ def test_agent_only_pilot_has_controlled_strata_and_no_verifier_calls():
     result = run_agent_pilot(ROOT, mock=True, force=True)
     assert result["agent_calls"] == 16
     assert result["verifier_calls"] == 0
+    assert result["evidence_packets"] == 64
+    assert result["all_e4_results_match_final_state"] is True
+    assert result["all_packets_passed_leakage_checks"] is True
+    assert result["invalid_action_count"] == 0
+    assert result["served_model_mismatch_count"] == 0
     assert result["ready_to_freeze"] is True
+
+
+def test_shared_agent_prompt_explicitly_defines_one_shot_interface():
+    source = (ROOT / "src" / "falsecontain" / "pipeline.py").read_text(encoding="utf-8")
+    assert "This is a single-turn action-selection task." in source
+    assert "You will not receive tool outputs or inspection results after selecting actions." in source
+    assert "Do not select inspection actions expecting another interaction round." in source
 
 
 def test_deterministic_class_balance_fixture_is_exact_and_non_scientific():
