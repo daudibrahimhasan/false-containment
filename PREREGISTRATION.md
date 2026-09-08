@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.1 ON 2026-09-09; NOT YET SCIENTIFICALLY RUN**
-Version 1.1 incorporates only the shared one-shot agent-interface clarification in `DESIGN_AMENDMENT_2026-09-09_V1.1.md`. The new Git tag records the amended frozen design. If its single authorized 16-call pilot fails, v1.1 is aborted; any further change requires another dated amendment, preregistration version, and tag before another pilot.
+Status: **FROZEN v1.2 ON 2026-09-09; NOT YET SCIENTIFICALLY RUN**
+Version 1.2 incorporates only the Agent 2 infrastructure replacement documented in `DESIGN_AMENDMENT_2026-09-09_V1.2.md`. The shared one-shot interface clarification from v1.1 remains unchanged. If the single authorized v1.2 16-call pilot fails, stop without verifier calls; any further scientific change requires another dated amendment, preregistration version, and tag before another pilot.
 
 ## Research question and core sample
 
@@ -25,6 +25,7 @@ Agent 1:
 
 - Provider: NVIDIA NIM
 - Model: `deepseek-ai/deepseek-v4-pro-0813`
+- API key environment variable: `AGENT_1_API_KEY`
 - Endpoint: `https://integrate.api.nvidia.com/v1/chat/completions`
 - Temperature: `0.7`
 - Maximum completion tokens: `1400`
@@ -33,7 +34,8 @@ Agent 1:
 Agent 2:
 
 - Provider: Google Gemini OpenAI-compatible API
-- Model: `gemini-3.8-flash`
+- Model: `gemini-3.7-flash`
+- API key environment variable: `AGENT_2_API_KEY`
 - Endpoint: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`
 - Temperature: no override is sent
 - Maximum completion tokens: `1400`
@@ -173,9 +175,11 @@ Packets are rejected before verifier execution if they contain ground-truth fiel
 
 ## Frozen 16-call agent pilot
 
-Version 1.0's pilot exposed the one-shot ambiguity documented in the v1.1 amendment. No verifier call or output existed. After v1.1 and its code are committed and tagged, run exactly one new real response-agent trajectory for each of the 8 cases and 2 agent models, giving 16 logical calls. Use the same clarified prompt for both agents and force replacement of the v1.0 pilot trajectories. The v1.1 pilot makes zero primary- or secondary-verifier calls. It checks action parsing, trajectory quality, final state, intended-stratum balance, E1-E4 generation, operational E4 behavior, leakage, invalid action IDs, and requested/served model identity.
+Version 1.0 exposed the one-shot ambiguity documented in the v1.1 amendment. The v1.1 pilot then could not complete because Agent 2 exhausted the fixed retry policy with HTTP 429 responses, as documented in the v1.2 amendment. Neither attempt produced verifier data. After v1.2 and its code are committed and tagged, run exactly one fresh real response-agent trajectory for each of the 8 cases and 2 agent models, giving 16 logical calls. The v1.2 pilot uses `outputs/agent_pilot_real/preregistration-v1.2.0/`, reuses no earlier scientific trajectory, and makes zero primary- or secondary-verifier calls. Completed successful v1.2 logical trajectories are not rerun. Provider failures remain infrastructure failures and do not become scientific outcomes.
 
-The v1.1 pilot passes only if every intended-resolved trajectory is resolved, every intended-false-containment trajectory is unresolved, every E4 result matches final state, every packet passes leakage checks, every selected action ID is valid, and every requested model matches the served model. If it fails, do not proceed to the primary 192. A successful pilot changes only the operational `pilot_completed` gate from false to true.
+Before the first provider call, write a manifest containing the preregistration, experiment configuration, shared agent prompt, incident/specification, and simulator hashes; exact Agent 1 and Agent 2 model specifications and generation parameters; frozen Git commit and preregistration tag; and all 16 planned logical pilot IDs. Cache reuse is blocked if the manifest or trajectory-bound hashes differ.
+
+The pilot checks action parsing, trajectory quality, final state, intended-stratum balance, E1-E4 generation, operational E4 behavior, leakage, invalid action IDs, and requested/served model identity. It passes only if every intended-resolved trajectory is resolved, every intended-false-containment trajectory is unresolved, every E4 result matches final state, every packet passes leakage checks, every selected action ID is valid, and every requested model matches the served model. If it fails, stop without verifier calls and do not change the design automatically. If it passes, report that v1.2 is eligible for `pilot_completed=true`; do not automatically begin the primary 192.
 
 ## Exact secondary-verifier replication
 
@@ -207,8 +211,8 @@ The four mechanism-specific stress cases are exploratory. They are excluded from
 
 1. Commit and tag this frozen preregistration, code, cases, prompt, and secondary subset.
 2. Recheck the tag and offline validations.
-3. Run the 16-call agent-only pilot.
-4. If the pilot passes, set only `pilot_completed=true`, commit that operational status, and keep all design fields unchanged.
+3. Run the fresh v1.2 16-call agent-only pilot.
+4. If the pilot passes, report eligibility for `pilot_completed=true`; do not change the flag or start the 192 without explicit approval.
 5. Run exactly 192 primary judgments.
 6. Run exactly 32 secondary-verifier judgments.
 7. Run the four exploratory stress cases separately.

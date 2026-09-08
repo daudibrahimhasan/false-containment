@@ -37,7 +37,7 @@ To test the complete 192-judgment structure without APIs or scientific claims:
 false-containment run --dry-run --mock
 ```
 
-The configured roles are DeepSeek V4 Pro 0813 through NVIDIA NIM and Gemini 3.8 Flash as agents, Qwen Max as the primary verifier, and Nemotron 3 Super as the small-subset secondary verifier. Gemini uses low thinking and no temperature/top-p override. Provider credentials are selected by each role's explicit `api_key_env`, so the two NVIDIA roles can use separate keys. After primary packets exist and `config/secondary_subset.json` contains the precommitted packet IDs, run `false-containment secondary`.
+The configured roles are DeepSeek V4 Pro 0813 through NVIDIA NIM and Gemini 3.7 Flash as agents, Qwen Max as the primary verifier, and Nemotron 3 Super as the small-subset secondary verifier. Gemini uses low thinking and no temperature/top-p override. Provider credentials are selected by each role's explicit `api_key_env`, so the two NVIDIA roles can use separate keys. After primary packets exist and `config/secondary_subset.json` contains the precommitted packet IDs, run `false-containment secondary`.
 
 Never run the scientific experiment before the incident set, secondary-verifier subset, and preregistration are finalized and committed.
 
@@ -60,7 +60,7 @@ false-containment preflight
 false-containment pilot
 ```
 
-The pilot records final simulator state for all eight setups under both response agents and reports whether every family contains both intended ground-truth strata. A changed case cannot silently reuse a cached pilot trajectory; before lock, an intentional rerun requires `--force`.
+The pilot records final simulator state for all eight setups under both response agents and reports whether every family contains both intended ground-truth strata. Real pilot outputs are isolated by preregistration version, and their manifest and trajectory hashes prevent reuse after a frozen input changes. Successful real logical trajectories cannot be force-rerun.
 
 Before any real API call, run the dedicated deterministic class-balance validation:
 

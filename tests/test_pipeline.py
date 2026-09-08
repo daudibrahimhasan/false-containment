@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-from falsecontain.pipeline import EVIDENCE_LEVELS, VERIFIER_PROMPT, build_packet, load_cases, read_json, run_agent_pilot, run_class_balance_validation, run_stress, score, simulate, validate_design
+from falsecontain.pipeline import AGENT_PROMPT, EVIDENCE_LEVELS, VERIFIER_PROMPT, build_pilot_manifest, build_packet, load_cases, read_json, run_agent_pilot, run_class_balance_validation, run_stress, score, simulate, validate_design
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -73,7 +73,7 @@ def test_exact_four_model_roles_are_locked():
     assert config["scientific_lock"] is True
     assert config["pilot_completed"] is False
     assert config["primary_judgment_order_seed"] == 20260909
-    assert [item["model"] for item in config["agent_models"]] == ["deepseek-ai/deepseek-v4-pro-0813", "gemini-3.8-flash"]
+    assert [item["model"] for item in config["agent_models"]] == ["deepseek-ai/deepseek-v4-pro-0813", "gemini-3.7-flash"]
     assert config["agent_models"][1]["thinking_level"] == "low"
     assert "temperature" not in config["agent_models"][1]
     assert config["primary_verifier"]["model"] == "qwen-max"
@@ -130,10 +130,22 @@ def test_agent_only_pilot_has_controlled_strata_and_no_verifier_calls():
 
 
 def test_shared_agent_prompt_explicitly_defines_one_shot_interface():
-    source = (ROOT / "src" / "falsecontain" / "pipeline.py").read_text(encoding="utf-8")
-    assert "This is a single-turn action-selection task." in source
-    assert "You will not receive tool outputs or inspection results after selecting actions." in source
-    assert "Do not select inspection actions expecting another interaction round." in source
+    assert "This is a single-turn action-selection task." in AGENT_PROMPT
+    assert "You will not receive tool outputs or inspection results after selecting actions." in AGENT_PROMPT
+    assert "Do not select inspection actions expecting another interaction round." in AGENT_PROMPT
+
+
+def test_v1_2_manifest_has_exact_fresh_pilot_jobs_and_no_verifiers():
+    config = read_json(ROOT / "config" / "experiment.json")
+    cases = load_cases(ROOT)
+    manifest, _ = build_pilot_manifest(ROOT, config, cases, verify_tag=False)
+    assert manifest["preregistration_version"] == "1.2.0"
+    assert manifest["planned_logical_agent_calls"] == 16
+    assert len(set(manifest["planned_logical_pilot_ids"])) == 16
+    assert manifest["planned_verifier_calls"] == 0
+    assert all("gemini-3.8-flash" not in job_id for job_id in manifest["planned_logical_pilot_ids"])
+    assert sum("gemini-3.7-flash" in job_id for job_id in manifest["planned_logical_pilot_ids"]) == 8
+    assert sum("deepseek-ai_deepseek-v4-pro-0813" in job_id for job_id in manifest["planned_logical_pilot_ids"]) == 8
 
 
 def test_deterministic_class_balance_fixture_is_exact_and_non_scientific():
