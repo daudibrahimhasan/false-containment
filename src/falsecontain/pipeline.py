@@ -622,7 +622,7 @@ def run_agent_pilot(root: Path, mock: bool = False, force: bool = False) -> dict
     output = root / "outputs" / ("agent_pilot_mock" if mock else "agent_pilot_real") / version_directory
     manifest, manifest_hash = build_pilot_manifest(root, config, cases, verify_tag=not mock)
     manifest_path = output / "manifest.json"
-    if manifest_path.exists() and read_json(manifest_path) != manifest:
+    if manifest_path.exists() and read_json(manifest_path) != manifest and not (mock and force):
         raise ValueError("pilot manifest differs from the frozen inputs; cache reuse is blocked")
     write_json(manifest_path, manifest)
     load_env(root / ".env")

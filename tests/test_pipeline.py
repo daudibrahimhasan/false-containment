@@ -74,6 +74,7 @@ def test_exact_four_model_roles_are_locked():
     assert config["pilot_completed"] is False
     assert config["primary_judgment_order_seed"] == 20260909
     assert [item["model"] for item in config["agent_models"]] == ["deepseek-ai/deepseek-v4-pro-0813", "gemini-3.7-flash"]
+    assert config["agent_models"][1]["api_key_env"] == "AGENT_2_API_KEY_PRIMARY"
     assert config["agent_models"][1]["thinking_level"] == "low"
     assert "temperature" not in config["agent_models"][1]
     assert config["primary_verifier"]["model"] == "qwen-max"

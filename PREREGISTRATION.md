@@ -35,7 +35,7 @@ Agent 2:
 
 - Provider: Google Gemini OpenAI-compatible API
 - Model: `gemini-3.7-flash`
-- API key environment variable: `AGENT_2_API_KEY`
+- API key environment variable: `AGENT_2_API_KEY_PRIMARY`
 - Endpoint: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`
 - Temperature: no override is sent
 - Maximum completion tokens: `1400`
