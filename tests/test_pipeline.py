@@ -68,13 +68,14 @@ def test_abstentions_are_excluded_from_primary_detection_denominator():
     assert metrics["unresolved_abstention_rate"] == 1 / 3
 
 
-def test_exact_four_model_roles_are_locked():
+def test_exact_four_model_roles_are_configured():
     config = read_json(ROOT / "config" / "experiment.json")
     assert config["scientific_lock"] is True
     assert config["pilot_completed"] is False
     assert config["primary_judgment_order_seed"] == 20260909
     assert [item["model"] for item in config["agent_models"]] == ["deepseek-ai/deepseek-v4-pro-0813", "gemini-3.7-flash"]
     assert config["agent_models"][1]["api_key_env"] == "AGENT_2_API_KEY_PRIMARY"
+    assert config["agent_models"][1]["fallback_api_key_env"] == "AGENT_2_API_KEY_FALLBACK"
     assert config["agent_models"][1]["thinking_level"] == "low"
     assert "temperature" not in config["agent_models"][1]
     assert config["primary_verifier"]["model"] == "qwen-max"
@@ -136,11 +137,11 @@ def test_shared_agent_prompt_explicitly_defines_one_shot_interface():
     assert "Do not select inspection actions expecting another interaction round." in AGENT_PROMPT
 
 
-def test_v1_2_manifest_has_exact_fresh_pilot_jobs_and_no_verifiers():
+def test_v1_3_manifest_has_exact_fresh_pilot_jobs_and_no_verifiers():
     config = read_json(ROOT / "config" / "experiment.json")
     cases = load_cases(ROOT)
     manifest, _ = build_pilot_manifest(ROOT, config, cases, verify_tag=False)
-    assert manifest["preregistration_version"] == "1.2.0"
+    assert manifest["preregistration_version"] == "1.3.0"
     assert manifest["planned_logical_agent_calls"] == 16
     assert len(set(manifest["planned_logical_pilot_ids"])) == 16
     assert manifest["planned_verifier_calls"] == 0

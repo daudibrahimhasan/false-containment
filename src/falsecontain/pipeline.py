@@ -271,6 +271,12 @@ class MockClient:
         return {"verdict": verdict, "confidence": 80, "reason": "Deterministic fixture verifier.", "usage": {"prompt_tokens": 0, "completion_tokens": 0}, "served_model": "mock"}
 
 
+class APIRequestFailure(RuntimeError):
+    def __init__(self, message: str, attempt_log: list[dict[str, Any]]):
+        super().__init__(message)
+        self.attempt_log = attempt_log
+
+
 class APIClient:
     ENV_KEYS = {
         "deepseek": ("DEEPSEEK_API_KEY", "AGENT_1_API_KEY"),
@@ -292,6 +298,43 @@ class APIClient:
                 return name, value
         return self.ENV_KEYS[provider][0], ""
 
+    @staticmethod
+    def _request_id(headers: Any, payload: dict[str, Any] | None = None) -> str | None:
+        for name in ("x-request-id", "x-goog-request-id", "request-id"):
+            value = headers.get(name) if headers else None
+            if value:
+                return str(value)
+        if payload:
+            value = payload.get("id") or payload.get("request_id")
+            if value:
+                return str(value)
+        return None
+
+    @staticmethod
+    def _failure_details(exc: Exception) -> tuple[int | None, str, str | None, dict[str, Any], bool]:
+        status = getattr(exc, "code", None)
+        headers = getattr(exc, "headers", None)
+        request_id = APIClient._request_id(headers)
+        usage: dict[str, Any] = {}
+        body = ""
+        if isinstance(exc, urllib.error.HTTPError):
+            try:
+                body = exc.read().decode("utf-8", errors="replace")[:2000]
+            except Exception:
+                body = ""
+        reason = f"{type(exc).__name__}: {exc}"
+        if body:
+            reason = f"{reason}; {body}"
+            try:
+                error_payload = json.loads(body)
+                request_id = request_id or APIClient._request_id(None, error_payload)
+                usage = error_payload.get("usage", {})
+            except json.JSONDecodeError:
+                pass
+        normalized = reason.lower()
+        eligible = status in {429, 503} or any(marker in normalized for marker in ("quota exhausted", "resource_exhausted", "resource exhausted", "service unavailable", "temporarily unavailable", "temporary unavailability"))
+        return status, reason, request_id, usage, eligible
+
     def preflight(self, spec: dict[str, Any]) -> dict[str, Any]:
         provider = spec["provider"]
         key_name, api_key = self._api_key(provider, spec)
@@ -312,9 +355,9 @@ class APIClient:
 
     def _call(self, spec: dict[str, Any], messages: list[dict[str, str]]) -> dict[str, Any]:
         provider = spec["provider"]
-        key_name, api_key = self._api_key(provider, spec)
-        if not api_key:
-            raise RuntimeError(f"{key_name} and its role-based alias are empty")
+        primary_name, primary_key = self._api_key(provider, spec)
+        if not primary_key:
+            raise APIRequestFailure(f"{primary_name} is empty", [])
         body: dict[str, Any] = {"model": spec["model"], "messages": messages, "max_tokens": spec.get("max_tokens", 1000), "response_format": {"type": "json_object"}}
         if "temperature" in spec:
             body["temperature"] = spec["temperature"]
@@ -324,27 +367,60 @@ class APIClient:
             body["reasoning_effort"] = spec["thinking_level"]
         if spec.get("thinking") is False and provider == "nvidia":
             body["chat_template_kwargs"] = {"enable_thinking": False}
+        encoded_body = json.dumps(body).encode()
+        key_slots = [("primary", primary_name, primary_key)]
+        fallback_name = spec.get("fallback_api_key_env")
+        if fallback_name:
+            key_slots.append(("fallback", fallback_name, os.environ.get(fallback_name, "")))
         last_error: Exception | None = None
+        attempt_log: list[dict[str, Any]] = []
         request_config = self.config["request"]
-        for attempt in range(request_config["retries"] + 1):
-            try:
+        for slot, key_name, api_key in key_slots:
+            if slot == "fallback":
+                primary_failures = [item for item in attempt_log if item["key_slot"] == "primary"]
+                if not primary_failures or not all(item["fallback_eligible"] for item in primary_failures):
+                    break
+                if not api_key:
+                    raise APIRequestFailure(f"{key_name} is empty after eligible primary-key exhaustion", attempt_log)
+            for attempt in range(request_config["retries"] + 1):
                 started = time.perf_counter()
-                request = urllib.request.Request(self.config["provider_urls"][provider], json.dumps(body).encode(), {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}, method="POST")
-                with urllib.request.urlopen(request, timeout=request_config["timeout_seconds"]) as response:
-                    raw = json.load(response)
-                content = raw["choices"][0]["message"]["content"]
-                parsed = json.loads(content)
-                parsed["usage"] = raw.get("usage", {})
-                parsed["served_model"] = raw.get("model", spec["model"])
-                parsed["raw_provider_response"] = raw
-                parsed["latency_ms"] = round((time.perf_counter() - started) * 1000)
-                parsed["retry_count"] = attempt
-                return parsed
-            except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, KeyError) as exc:
-                last_error = exc
-                if attempt < request_config["retries"]:
-                    time.sleep(request_config["backoff_seconds"] * (2**attempt))
-        raise RuntimeError(f"API request failed after retries: {last_error}")
+                response_headers = None
+                http_status = None
+                raw: dict[str, Any] | None = None
+                try:
+                    request = urllib.request.Request(self.config["provider_urls"][provider], encoded_body, {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}, method="POST")
+                    with urllib.request.urlopen(request, timeout=request_config["timeout_seconds"]) as response:
+                        raw = json.load(response)
+                        response_headers = response.headers
+                        http_status = getattr(response, "status", 200)
+                    content = raw["choices"][0]["message"]["content"]
+                    parsed = json.loads(content)
+                    latency_ms = round((time.perf_counter() - started) * 1000)
+                    usage = raw.get("usage", {})
+                    request_id = self._request_id(response_headers, raw)
+                    attempt_log.append({"key_slot": slot, "attempt_number": attempt + 1, "outcome": "success", "http_status": http_status, "failure_reason": None, "latency_ms": latency_ms, "token_usage": usage, "provider_request_id": request_id, "retry_backoff_seconds": None, "fallback_eligible": False})
+                    parsed["usage"] = usage
+                    parsed["served_model"] = raw.get("model", spec["model"])
+                    parsed["raw_provider_response"] = raw
+                    parsed["latency_ms"] = latency_ms
+                    parsed["retry_count"] = sum(item["outcome"] == "failure" for item in attempt_log)
+                    parsed["key_slot_retry_count"] = attempt
+                    parsed["key_slot"] = slot
+                    parsed["provider_request_id"] = request_id
+                    parsed["attempt_log"] = attempt_log
+                    return parsed
+                except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, KeyError) as exc:
+                    last_error = exc
+                    status, reason, request_id, usage, eligible = self._failure_details(exc)
+                    status = status or http_status
+                    request_id = request_id or self._request_id(response_headers, raw)
+                    if not usage and raw:
+                        usage = raw.get("usage", {})
+                    retry_backoff = request_config["backoff_seconds"] * (2**attempt) if attempt < request_config["retries"] else None
+                    attempt_log.append({"key_slot": slot, "attempt_number": attempt + 1, "outcome": "failure", "http_status": status, "failure_reason": reason, "latency_ms": round((time.perf_counter() - started) * 1000), "token_usage": usage, "provider_request_id": request_id, "retry_backoff_seconds": retry_backoff, "fallback_eligible": eligible})
+                    if attempt < request_config["retries"]:
+                        time.sleep(retry_backoff)
+        raise APIRequestFailure(f"API request failed after allowed key-slot retries: {last_error}", attempt_log)
 
     def agent(self, case: dict[str, Any], model: dict[str, Any]) -> dict[str, Any]:
         result = self._call(model, [
@@ -638,7 +714,16 @@ def run_agent_pilot(root: Path, mock: bool = False, force: bool = False) -> dict
                 if trajectory.get("case_hash") != case_hash or trajectory.get("manifest_hash") != manifest_hash:
                     raise ValueError(f"{trajectory_id}: frozen hashes changed; cache reuse is blocked")
             else:
-                agent_result = client.agent(case, agent_spec)
+                try:
+                    agent_result = client.agent(case, agent_spec)
+                except APIRequestFailure as exc:
+                    failure = {"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "provider": agent_spec["provider"], "requested_model": agent_spec["model"], "status": "infrastructure_failed_pending", "scientific_outcome": False, "error": str(exc), "attempt_log": exc.attempt_log, "created_at": datetime.now(timezone.utc).isoformat()}
+                    write_json(output / "failures" / f"{trajectory_id}.json", failure)
+                    result = {"mode": "real_agent_design_validation", "pilot_status": "stopped_infrastructure_failure", "preregistration_version": config["preregistration_version"], "manifest_hash": manifest_hash, "completed_agent_calls": len(rows), "failed_pending_logical_call": trajectory_id, "verifier_calls": 0, "qwen_calls": 0, "nemotron_calls": 0, "evidence_packets": sum(row["packet_count"] for row in rows), "ready_to_freeze": False}
+                    write_json(output / "results" / "rows.json", rows)
+                    write_json(output / "results" / "summary.json", result)
+                    _write_csv(output / "results" / "rows.csv", rows)
+                    return result
                 simulation = simulate(case, agent_result["selected_action_ids"])
                 trajectory = {"trajectory_id": trajectory_id, "manifest_hash": manifest_hash, "case_hash": case_hash, "case_id": case["case_id"], "pair_id": case["pair_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent": agent_spec, "raw_and_parsed_agent_result": agent_result, "initial_state": case["initial_state"], "action_records": simulation.action_records, "final_state": simulation.final_state, "deterministic_ground_truth": simulation.ground_truth, "created_at": datetime.now(timezone.utc).isoformat()}
                 write_json(path, trajectory)
@@ -662,7 +747,7 @@ def run_agent_pilot(root: Path, mock: bool = False, force: bool = False) -> dict
                 leakage_passed = False
             served_model_matches = mock or agent_result.get("served_model") == agent_spec["model"]
             matches_intended = (simulation.ground_truth == "resolved") == (case["intended_stratum"] == "intended_resolved")
-            rows.append({"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent_model": agent_spec["model"], "ground_truth": simulation.ground_truth, "matches_intended_stratum": matches_intended, "invalid_action_ids": invalid_action_ids, "served_model_matches": served_model_matches, "e4_matches_final_state": e4_matches_final_state, "leakage_passed": leakage_passed, "packet_count": len(packet_ids)})
+            rows.append({"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent_model": agent_spec["model"], "ground_truth": simulation.ground_truth, "matches_intended_stratum": matches_intended, "invalid_action_ids": invalid_action_ids, "served_model_matches": served_model_matches, "key_slot": agent_result.get("key_slot"), "retry_count": agent_result.get("retry_count", 0), "provider_request_id": agent_result.get("provider_request_id"), "usage": agent_result.get("usage", {}), "e4_matches_final_state": e4_matches_final_state, "leakage_passed": leakage_passed, "packet_count": len(packet_ids)})
     family_status = {}
     for family in config["required_families"]:
         family_rows = [row for row in rows if row["family"] == family]

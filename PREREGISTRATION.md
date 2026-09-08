@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.2 ON 2026-09-09; NOT YET SCIENTIFICALLY RUN**
-Version 1.2 incorporates only the Agent 2 infrastructure replacement documented in `DESIGN_AMENDMENT_2026-09-09_V1.2.md`. The shared one-shot interface clarification from v1.1 remains unchanged. If the single authorized v1.2 16-call pilot fails, stop without verifier calls; any further scientific change requires another dated amendment, preregistration version, and tag before another pilot.
+Status: **FROZEN v1.3 ON 2026-09-09; PILOT IN PROGRESS, NO VERIFIER CALLS**
+Version 1.3 adds only the Agent 2 same-model, same-request credential fallback documented in `DESIGN_AMENDMENT_2026-09-09_V1.3.md`. Version 1.2 and its partial pilot remain preserved under their existing commit, tag, and output directory.
 
 ## Research question and core sample
 
@@ -35,7 +35,8 @@ Agent 2:
 
 - Provider: Google Gemini OpenAI-compatible API
 - Model: `gemini-3.7-flash`
-- API key environment variable: `AGENT_2_API_KEY_PRIMARY`
+- Primary API key environment variable: `AGENT_2_API_KEY_PRIMARY`
+- Infrastructure-fallback API key environment variable: `AGENT_2_API_KEY_FALLBACK`
 - Endpoint: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`
 - Temperature: no override is sent
 - Maximum completion tokens: `1400`
@@ -62,6 +63,10 @@ Secondary verifier:
 - It receives the exact saved primary evidence packets and the exact same verifier prompt. It does not regenerate evidence.
 
 Every provider call has a 120-second timeout. A failed transport request, HTTP request, timeout, invalid JSON response, or missing response field is retried up to 3 times after the initial attempt, for at most 4 attempts total. Backoff is fixed at 2, 4, and 8 seconds. After the final failure, the call is marked failed. No verdict is synthesized and no substitute model is used. A schema-invalid parsed response is marked failed without model substitution.
+
+For Agent 2 only, the primary Gemini key receives that complete fixed policy first. Fallback is activated only when every primary attempt fails with HTTP 429, HTTP 503, quota or resource exhaustion, service unavailability, or temporary unavailability. HTTP 403 and other noneligible failures do not activate fallback. Invalid or undesirable model output does not activate fallback. If activated, the fallback key receives the same fixed policy for the byte-identical serialized request. A successful response from either key is the single trajectory; attempts are never separate trajectories and responses are never combined. If both key slots exhaust the policy, the logical call remains infrastructure-failed and pending without model substitution.
+
+Each provider attempt logs the key slot (`primary` or `fallback`), attempt number, outcome, HTTP status where available, failure reason, latency, scheduled retry backoff where applicable, token usage where available, and provider request ID where available. API key values are never stored or printed.
 
 The exact served-model identifier, raw provider response, usage metadata, latency, and retry count are retained with each successful call.
 
@@ -175,11 +180,11 @@ Packets are rejected before verifier execution if they contain ground-truth fiel
 
 ## Frozen 16-call agent pilot
 
-Version 1.0 exposed the one-shot ambiguity documented in the v1.1 amendment. The v1.1 pilot then could not complete because Agent 2 exhausted the fixed retry policy with HTTP 429 responses, as documented in the v1.2 amendment. Neither attempt produced verifier data. After v1.2 and its code are committed and tagged, run exactly one fresh real response-agent trajectory for each of the 8 cases and 2 agent models, giving 16 logical calls. The v1.2 pilot uses `outputs/agent_pilot_real/preregistration-v1.2.0/`, reuses no earlier scientific trajectory, and makes zero primary- or secondary-verifier calls. Completed successful v1.2 logical trajectories are not rerun. Provider failures remain infrastructure failures and do not become scientific outcomes.
+Version 1.0 exposed the one-shot ambiguity documented in the v1.1 amendment. The v1.1 pilot then could not complete because Agent 2 exhausted the fixed retry policy with HTTP 429 responses, as documented in the v1.2 amendment. The v1.2 pilot completed one Agent 1 trajectory before Agent 2 returned HTTP 403 after its fixed retry policy; no v1.2 Gemini trajectory or verifier data existed. After v1.3 and its code are committed and tagged, run exactly one fresh real response-agent trajectory for each of the 8 cases and 2 agent models, giving 16 logical calls. The v1.3 pilot uses `outputs/agent_pilot_real/preregistration-v1.3.0/`, reuses no v1.2 trajectory, and makes zero primary- or secondary-verifier calls. Completed successful v1.3 logical trajectories are not rerun. Provider failures remain infrastructure failures and do not become scientific outcomes.
 
 Before the first provider call, write a manifest containing the preregistration, experiment configuration, shared agent prompt, incident/specification, and simulator hashes; exact Agent 1 and Agent 2 model specifications and generation parameters; frozen Git commit and preregistration tag; and all 16 planned logical pilot IDs. Cache reuse is blocked if the manifest or trajectory-bound hashes differ.
 
-The pilot checks action parsing, trajectory quality, final state, intended-stratum balance, E1-E4 generation, operational E4 behavior, leakage, invalid action IDs, and requested/served model identity. It passes only if every intended-resolved trajectory is resolved, every intended-false-containment trajectory is unresolved, every E4 result matches final state, every packet passes leakage checks, every selected action ID is valid, and every requested model matches the served model. If it fails, stop without verifier calls and do not change the design automatically. If it passes, report that v1.2 is eligible for `pilot_completed=true`; do not automatically begin the primary 192.
+The pilot checks action parsing, trajectory quality, final state, intended-stratum balance, E1-E4 generation, operational E4 behavior, leakage, invalid action IDs, and requested/served model identity. It passes only if every intended-resolved trajectory is resolved, every intended-false-containment trajectory is unresolved, every E4 result matches final state, every packet passes leakage checks, every selected action ID is valid, and every requested model matches the served model. If it fails, stop without verifier calls and do not change the design automatically. If it passes, report that v1.3 is eligible for `pilot_completed=true`; do not automatically begin the primary 192.
 
 ## Exact secondary-verifier replication
 
@@ -211,7 +216,7 @@ The four mechanism-specific stress cases are exploratory. They are excluded from
 
 1. Commit and tag this frozen preregistration, code, cases, prompt, and secondary subset.
 2. Recheck the tag and offline validations.
-3. Run the fresh v1.2 16-call agent-only pilot.
+3. Run the fresh v1.3 16-call agent-only pilot.
 4. If the pilot passes, report eligibility for `pilot_completed=true`; do not change the flag or start the 192 without explicit approval.
 5. Run exactly 192 primary judgments.
 6. Run exactly 32 secondary-verifier judgments.
