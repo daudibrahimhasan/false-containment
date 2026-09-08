@@ -158,3 +158,19 @@ def test_malformed_http_200_logs_request_id_without_fallback(monkeypatch):
     assert all(item["provider_request_id"] == "req-malformed" for item in captured.value.attempt_log)
     assert all(item["token_usage"] == {"prompt_tokens": 7} for item in captured.value.attempt_log)
     assert all(item["key_slot"] == "primary" for item in captured.value.attempt_log)
+
+
+def test_json_list_error_body_is_recorded_without_crashing(monkeypatch):
+    client, spec = client_and_spec(monkeypatch)
+    calls = []
+
+    def fake_urlopen(request, **_):
+        calls.append(request)
+        raise urllib.error.HTTPError("https://gemini.invalid", 403, "forbidden", {}, io.BytesIO(b"[\"forbidden\"]"))
+
+    monkeypatch.setattr("falsecontain.pipeline.urllib.request.urlopen", fake_urlopen)
+    with pytest.raises(APIRequestFailure) as captured:
+        client._call(spec, [{"role": "user", "content": "same"}])
+    assert len(calls) == 4
+    assert len(captured.value.attempt_log) == 4
+    assert all(item["http_status"] == 403 for item in captured.value.attempt_log)

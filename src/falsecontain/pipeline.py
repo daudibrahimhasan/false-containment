@@ -304,7 +304,7 @@ class APIClient:
             value = headers.get(name) if headers else None
             if value:
                 return str(value)
-        if payload:
+        if isinstance(payload, dict):
             value = payload.get("id") or payload.get("request_id")
             if value:
                 return str(value)
@@ -327,8 +327,9 @@ class APIClient:
             reason = f"{reason}; {body}"
             try:
                 error_payload = json.loads(body)
-                request_id = request_id or APIClient._request_id(None, error_payload)
-                usage = error_payload.get("usage", {})
+                if isinstance(error_payload, dict):
+                    request_id = request_id or APIClient._request_id(None, error_payload)
+                    usage = error_payload.get("usage", {})
             except json.JSONDecodeError:
                 pass
         normalized = reason.lower()
