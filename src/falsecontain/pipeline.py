@@ -599,7 +599,9 @@ def run_secondary(root: Path, mock: bool = False, fixture: bool = False) -> dict
             raise ValueError(f"selected packet does not exist: {packet_id}")
         packet = read_json(packet_path)
         verdict_path = secondary_root / "verdicts" / f"{packet_id}.json"
-        verdict = read_json(verdict_path) if verdict_path.exists() else client.verifier(packet, spec)
+        cached_verdict = read_json(verdict_path) if verdict_path.exists() else None
+        # Never let an offline mock verdict satisfy a real secondary run.
+        verdict = cached_verdict if cached_verdict is not None and (mock or cached_verdict.get("served_model") != "mock") else client.verifier(packet, spec)
         write_json(verdict_path, verdict)
         rows.append({"packet_id": packet_id, "source_packet_id": source_packet_id, "case_id": packet["case_id"], "family": packet["incident_family"], "evidence_level": packet["evidence_level"], "secondary_verifier_model": spec["model"], "verdict": verdict["verdict"], "confidence": verdict["confidence"], "prompt_tokens": verdict.get("usage", {}).get("prompt_tokens"), "completion_tokens": verdict.get("usage", {}).get("completion_tokens")})
     write_json(secondary_root / "results" / "rows.json", rows)
