@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.6 ON 2026-09-09; FRESH DEEPSEEK-V4-FLASH PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.6 replaces the unusable GLM-5.3-free Agent 1 route with direct DeepSeek `deepseek-v4-flash`. The v1.4 through v1.5.7 tags, DeepSeek NIM pilot, GLM pilot attempts, and all prior artifacts remain preserved. No v1.6 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.6.1 ON 2026-09-09; FRESH DEEPSEEK-V4-FLASH PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.6.1 preserves the direct DeepSeek `deepseek-v4-flash` substitution and sends its supported low reasoning-effort setting with a 4,096-token cap. The v1.4 through v1.6.0 tags, DeepSeek NIM pilot, GLM pilot attempts, and all prior artifacts remain preserved. No v1.6.1 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 
@@ -28,8 +28,8 @@ Agent 1:
 - API key environment variable: `DEEPSEEK_1`
 - Endpoint: `https://api.deepseek.com/v1/chat/completions`
 - Temperature: `0.7`
-- Maximum completion tokens: `1400`
-- Thinking: disabled; no reasoning override is sent
+- Maximum completion tokens: `4096`
+- Reasoning effort: `low`, sent as `reasoning_effort=low`
 
 Agent 2:
 

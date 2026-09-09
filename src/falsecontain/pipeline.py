@@ -369,6 +369,8 @@ class APIClient:
             body["top_p"] = spec["top_p"]
         if provider == "gemini" and "thinking_level" in spec:
             body["reasoning_effort"] = spec["thinking_level"]
+        if provider == "deepseek" and "reasoning_effort" in spec:
+            body["reasoning_effort"] = spec["reasoning_effort"]
         if spec.get("thinking") is False and provider == "nvidia":
             body["chat_template_kwargs"] = {"enable_thinking": False}
         if provider == "tokenrouter":
