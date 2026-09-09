@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from .pipeline import load_cases, read_json, run, run_agent_pilot, run_class_balance_validation, run_preflight, run_secondary, run_stress, validate_design
+from .pipeline import evaluate_pilot_artifacts, load_cases, read_json, run, run_agent_pilot, run_class_balance_validation, run_preflight, run_secondary, run_stress, validate_design
 
 
 def main() -> None:
@@ -27,6 +27,7 @@ def main() -> None:
     pilot_parser.add_argument("--force", action="store_true")
     commands.add_parser("preflight", help="check API keys and exact provider model IDs without inference")
     commands.add_parser("validate-classes", help="run the deterministic 8-fixture, 4/4 class-balance validation with no APIs")
+    commands.add_parser("evaluate-pilot", help="evaluate completed pilot artifacts under the frozen pilot gate without APIs")
     args = parser.parse_args()
     root = args.root.resolve()
     if args.command == "validate":
@@ -45,6 +46,8 @@ def main() -> None:
         result = run_agent_pilot(root, mock=args.mock, force=args.force)
     elif args.command == "preflight":
         result = run_preflight(root)
+    elif args.command == "evaluate-pilot":
+        result = evaluate_pilot_artifacts(root, version="1.3.1")
     else:
         result = run_class_balance_validation(root)
     print(json.dumps(result, indent=2))

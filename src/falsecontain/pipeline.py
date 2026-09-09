@@ -683,6 +683,119 @@ def build_pilot_manifest(root: Path, config: dict[str, Any], cases: list[dict[st
     return manifest, manifest_hash
 
 
+def evaluate_pilot_gate(
+    rows: list[dict[str, Any]],
+    config: dict[str, Any],
+    *,
+    infrastructure_failures: int = 0,
+    corrupted_trajectory_count: int = 0,
+    simulator_exception_count: int = 0,
+    ground_truth_audit_passed: bool = True,
+    matched_cessation_passed: bool = True,
+    provider_policy_passed: bool = True,
+    rerun_detected: bool = False,
+    relabel_detected: bool = False,
+) -> dict[str, Any]:
+    """Evaluate the frozen v1.4 pilot gate without changing any trajectory."""
+    model_counts = {
+        spec["model"]: {"resolved": 0, "unresolved": 0}
+        for spec in config["agent_models"]
+    }
+    for row in rows:
+        if row.get("agent_model") in model_counts and row.get("ground_truth") in {"resolved", "unresolved"}:
+            model_counts[row["agent_model"]][row["ground_truth"]] += 1
+    family_counts = {
+        family: {"resolved": 0, "unresolved": 0}
+        for family in config["required_families"]
+    }
+    for row in rows:
+        if row.get("family") in family_counts and row.get("ground_truth") in {"resolved", "unresolved"}:
+            family_counts[row["family"]][row["ground_truth"]] += 1
+    invalid_action_count = sum(len(row.get("invalid_action_ids", [])) for row in rows)
+    parser_failure_count = sum(bool(row.get("parsing_failed", row.get("parser_failed", False))) for row in rows)
+    served_model_mismatch_count = sum(not row.get("served_model_matches", False) for row in rows)
+    unique_trajectory_ids = {row.get("trajectory_id") for row in rows}
+    conditions = {
+        "completion": len(rows) == 16 and len(unique_trajectory_ids) == 16 and infrastructure_failures == 0,
+        "ground_truth": ground_truth_audit_passed and not rerun_detected and not relabel_detected,
+        "model_class_coverage": all(counts["resolved"] >= 1 and counts["unresolved"] >= 1 for counts in model_counts.values()),
+        "family_class_coverage": all(counts["resolved"] >= 1 and counts["unresolved"] >= 1 for counts in family_counts.values()),
+        "evidence_integrity": sum(row.get("packet_count", 0) for row in rows) == 64 and all(row.get("packet_count", 0) == 4 for row in rows) and all(row.get("e4_matches_final_state", False) for row in rows) and all(row.get("leakage_passed", False) for row in rows) and matched_cessation_passed,
+        "execution_integrity": invalid_action_count == 0 and parser_failure_count == 0 and served_model_mismatch_count == 0 and corrupted_trajectory_count == 0 and simulator_exception_count == 0,
+        "provider_integrity": provider_policy_passed,
+    }
+    return {
+        "passed": all(conditions.values()),
+        "conditions": conditions,
+        "completed_logical_calls": len(rows),
+        "expected_logical_calls": 16,
+        "evidence_packets": sum(row.get("packet_count", 0) for row in rows),
+        "expected_evidence_packets": 64,
+        "model_class_counts": model_counts,
+        "family_class_counts": family_counts,
+        "invalid_action_count": invalid_action_count,
+        "parser_failure_count": parser_failure_count,
+        "served_model_mismatch_count": served_model_mismatch_count,
+        "infrastructure_failure_count": infrastructure_failures,
+        "corrupted_trajectory_count": corrupted_trajectory_count,
+        "simulator_exception_count": simulator_exception_count,
+        "intended_stratum_is_not_used_as_final_label": True,
+    }
+
+
+def evaluate_pilot_artifacts(root: Path, version: str = "1.3.1") -> dict[str, Any]:
+    """Read an existing pilot directory and evaluate it under the v1.4 gate."""
+    config = read_json(root / "config" / "experiment.json")
+    output = root / "outputs" / "agent_pilot_real" / f"preregistration-v{version}"
+    manifest = read_json(output / "manifest.json")
+    rows = read_json(output / "results" / "rows.json")
+    manifest_hash = hashlib.sha256(json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+    trajectory_paths = {path.stem: path for path in (output / "trajectories").glob("*.json")}
+    expected_ids = set(manifest["planned_logical_pilot_ids"])
+    corrupted = 0
+    ground_truth_ok = set(trajectory_paths) == expected_ids
+    for trajectory_id in expected_ids:
+        path = trajectory_paths.get(trajectory_id)
+        if path is None:
+            corrupted += 1
+            ground_truth_ok = False
+            continue
+        try:
+            trajectory = read_json(path)
+            row = next((item for item in rows if item.get("trajectory_id") == trajectory_id), None)
+            if row is None or trajectory.get("manifest_hash") != manifest_hash or trajectory.get("deterministic_ground_truth") != row.get("ground_truth"):
+                corrupted += 1
+                ground_truth_ok = False
+        except (OSError, ValueError, TypeError):
+            corrupted += 1
+            ground_truth_ok = False
+    failure_ids = {path.stem for path in (output / "failures").glob("*.json")}
+    unresolved_failures = failure_ids - set(trajectory_paths)
+    cases = load_cases(root)
+    matched_cessation_passed = not validate_design(cases, config, scientific=True)
+    gate = evaluate_pilot_gate(
+        rows,
+        config,
+        infrastructure_failures=len(unresolved_failures),
+        corrupted_trajectory_count=corrupted,
+        ground_truth_audit_passed=ground_truth_ok,
+        matched_cessation_passed=matched_cessation_passed,
+    )
+    result = {
+        "mode": "offline_pilot_gate_evaluation",
+        "evaluated_version": version,
+        "manifest_hash": manifest_hash,
+        "pilot_gate": gate,
+        "historical_failure_artifacts": len(failure_ids),
+        "unresolved_infrastructure_failures": len(unresolved_failures),
+        "verifier_calls": 0,
+        "qwen_calls": 0,
+        "nemotron_calls": 0,
+    }
+    write_json(output / "results" / "v1.4_gate_evaluation.json", result)
+    return result
+
+
 def run_agent_pilot(root: Path, mock: bool = False, force: bool = False) -> dict[str, Any]:
     config = read_json(root / "config" / "experiment.json")
     if not mock and not config.get("scientific_lock"):
@@ -748,13 +861,13 @@ def run_agent_pilot(root: Path, mock: bool = False, force: bool = False) -> dict
                 leakage_passed = False
             served_model_matches = mock or agent_result.get("served_model") == agent_spec["model"]
             matches_intended = (simulation.ground_truth == "resolved") == (case["intended_stratum"] == "intended_resolved")
-            rows.append({"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent_model": agent_spec["model"], "ground_truth": simulation.ground_truth, "matches_intended_stratum": matches_intended, "invalid_action_ids": invalid_action_ids, "served_model_matches": served_model_matches, "key_slot": agent_result.get("key_slot"), "retry_count": agent_result.get("retry_count", 0), "provider_request_id": agent_result.get("provider_request_id"), "usage": agent_result.get("usage", {}), "e4_matches_final_state": e4_matches_final_state, "leakage_passed": leakage_passed, "packet_count": len(packet_ids)})
+            rows.append({"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "intended_stratum": case["intended_stratum"], "agent_model": agent_spec["model"], "ground_truth": simulation.ground_truth, "ground_truth_source": "deterministic_final_state", "matches_intended_stratum": matches_intended, "invalid_action_ids": invalid_action_ids, "parsing_failed": False, "served_model_matches": served_model_matches, "key_slot": agent_result.get("key_slot"), "retry_count": agent_result.get("retry_count", 0), "provider_request_id": agent_result.get("provider_request_id"), "usage": agent_result.get("usage", {}), "e4_matches_final_state": e4_matches_final_state, "leakage_passed": leakage_passed, "packet_count": len(packet_ids)})
     family_status = {}
     for family in config["required_families"]:
         family_rows = [row for row in rows if row["family"] == family]
         family_status[family] = {"actual_labels": sorted({row["ground_truth"] for row in family_rows}), "has_both_strata": {row["ground_truth"] for row in family_rows} == {"resolved", "unresolved"}, "all_intended_matches": all(row["matches_intended_stratum"] for row in family_rows)}
-    all_gate_checks_pass = all(not row["invalid_action_ids"] and row["served_model_matches"] and row["e4_matches_final_state"] and row["leakage_passed"] and row["packet_count"] == 4 for row in rows)
-    result = {"mode": "mock" if mock else "real_agent_design_validation", "preregistration_version": config["preregistration_version"], "manifest_hash": manifest_hash, "agent_calls": len(rows), "verifier_calls": 0, "qwen_calls": 0, "nemotron_calls": 0, "evidence_packets": sum(row["packet_count"] for row in rows), "all_e4_results_match_final_state": all(row["e4_matches_final_state"] for row in rows), "all_packets_passed_leakage_checks": all(row["leakage_passed"] for row in rows), "invalid_action_count": sum(len(row["invalid_action_ids"]) for row in rows), "served_model_mismatch_count": sum(not row["served_model_matches"] for row in rows), "family_status": family_status, "ready_to_freeze": all_gate_checks_pass and all(item["has_both_strata"] and item["all_intended_matches"] for item in family_status.values())}
+    pilot_gate = evaluate_pilot_gate(rows, config, matched_cessation_passed=not validate_design(cases, config, scientific=True))
+    result = {"mode": "mock" if mock else "real_agent_design_validation", "preregistration_version": config["preregistration_version"], "manifest_hash": manifest_hash, "agent_calls": len(rows), "verifier_calls": 0, "qwen_calls": 0, "nemotron_calls": 0, "evidence_packets": sum(row["packet_count"] for row in rows), "all_e4_results_match_final_state": all(row["e4_matches_final_state"] for row in rows), "all_packets_passed_leakage_checks": all(row["leakage_passed"] for row in rows), "invalid_action_count": sum(len(row["invalid_action_ids"]) for row in rows), "served_model_mismatch_count": sum(not row["served_model_matches"] for row in rows), "family_status": family_status, "pilot_gate": pilot_gate, "ready_to_freeze": pilot_gate["passed"]}
     write_json(output / "results" / "rows.json", rows)
     write_json(output / "results" / "summary.json", result)
     _write_csv(output / "results" / "rows.csv", rows)

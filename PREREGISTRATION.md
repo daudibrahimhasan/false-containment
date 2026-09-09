@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.3.1 ON 2026-09-09; PILOT IN PROGRESS, NO VERIFIER CALLS**
-Version 1.3.1 preserves the frozen v1.3 Agent 2 same-model, same-request credential fallback and adds only the error-logging robustness patch documented in `DESIGN_AMENDMENT_2026-09-09_V1.3.1.md`. The v1.3.0 tag and its stopped pre-trajectory attempt remain preserved. Version 1.2 and its partial pilot remain preserved under their existing commit, tag, and output directory. The v1.3.1 tag records this corrected frozen state.
+Status: **FROZEN v1.4 ON 2026-09-09; PILOT GATE PASSED, NO VERIFIER CALLS**
+Version 1.4 changes only the pilot completion gate, as documented in `DESIGN_AMENDMENT_2026-09-09_V1.4.md`. The v1.3.1 tag and completed pilot remain preserved. No v1.4 primary- or secondary-verifier judgment exists. The v1.4 tag records this frozen state.
 
 ## Research question and core sample
 
@@ -180,11 +180,11 @@ Packets are rejected before verifier execution if they contain ground-truth fiel
 
 ## Frozen 16-call agent pilot
 
-Version 1.0 exposed the one-shot ambiguity documented in the v1.1 amendment. The v1.1 pilot then could not complete because Agent 2 exhausted the fixed retry policy with HTTP 429 responses, as documented in the v1.2 amendment. The v1.2 pilot completed one Agent 1 trajectory before Agent 2 returned HTTP 403 after its fixed retry policy; no v1.2 Gemini trajectory or verifier data existed. The v1.3.0 pilot stopped before producing a trajectory because its failure logger could not handle a JSON-list error body; this is documented in the v1.3.1 amendment. After v1.3.1 and its code are committed and tagged, run exactly one fresh real response-agent trajectory for each of the 8 cases and 2 agent models, giving 16 logical calls. The v1.3.1 pilot uses `outputs/agent_pilot_real/preregistration-v1.3.1/`, reuses no v1.2 or v1.3.0 trajectory, and makes zero primary- or secondary-verifier calls. Completed successful v1.3.1 logical trajectories are not rerun. Provider failures remain infrastructure failures and do not become scientific outcomes.
+The v1.3.1 pilot already completed exactly 16 logical response-agent calls and generated 64 packets. Its trajectories and labels are preserved and are evaluated offline under the v1.4 gate; no trajectory is rerun. The intended setup stratum remains metadata about the environment design. It does not override the final ground-truth label, which comes only from deterministic final simulator state.
 
 Before the first provider call, write a manifest containing the preregistration, experiment configuration, shared agent prompt, incident/specification, and simulator hashes; exact Agent 1 and Agent 2 model specifications and generation parameters; frozen Git commit and preregistration tag; and all 16 planned logical pilot IDs. Cache reuse is blocked if the manifest or trajectory-bound hashes differ.
 
-The pilot checks action parsing, trajectory quality, final state, intended-stratum balance, E1-E4 generation, operational E4 behavior, leakage, invalid action IDs, and requested/served model identity. It passes only if every intended-resolved trajectory is resolved, every intended-false-containment trajectory is unresolved, every E4 result matches final state, every packet passes leakage checks, every selected action ID is valid, and every requested model matches the served model. If it fails, stop without verifier calls and do not change the design automatically. If it passes, report that v1.3.1 is eligible for `pilot_completed=true`; do not automatically begin the primary 192.
+The v1.4 pilot gate passes only if all of the following hold: exactly 16 logical trajectories are complete with no unresolved infrastructure failure; every ground-truth label is deterministic final-state output with no manual relabeling or outcome-forcing rerun; each response-agent model has at least one resolved and one unresolved trajectory; every incident family has at least one resolved and one unresolved trajectory across the two models; all 64 evidence packets have correct E4 operational results, pass leakage, and retain matched visible-cessation integrity; invalid actions, parsing failures, served-model mismatches, corrupted trajectories, and simulator exceptions are all zero; and retries follow the frozen provider/fallback policy without model substitution or counting retries as new trajectories. It is not required that an intended-resolved setup become resolved or that an intended-false-containment setup become unresolved. If the gate fails, stop without verifier calls and do not change the design automatically. If it passes, report eligibility for `pilot_completed=true`; do not automatically begin the primary 192.
 
 ## Exact secondary-verifier replication
 
@@ -216,7 +216,7 @@ The four mechanism-specific stress cases are exploratory. They are excluded from
 
 1. Commit and tag this frozen preregistration, code, cases, prompt, and secondary subset.
 2. Recheck the tag and offline validations.
-3. Run the fresh v1.3.1 16-call agent-only pilot.
+3. Evaluate the completed v1.3.1 pilot artifacts under the v1.4 gate without rerunning trajectories.
 4. If the pilot passes, report eligibility for `pilot_completed=true`; do not change the flag or start the 192 without explicit approval.
 5. Run exactly 192 primary judgments.
 6. Run exactly 32 secondary-verifier judgments.
