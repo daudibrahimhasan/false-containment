@@ -143,7 +143,7 @@ def test_v1_3_manifest_has_exact_fresh_pilot_jobs_and_no_verifiers():
     config = read_json(ROOT / "config" / "experiment.json")
     cases = load_cases(ROOT)
     manifest, _ = build_pilot_manifest(ROOT, config, cases, verify_tag=False)
-    assert manifest["preregistration_version"] == "1.5.1"
+    assert manifest["preregistration_version"] == "1.5.2"
     assert manifest["planned_logical_agent_calls"] == 16
     assert len(set(manifest["planned_logical_pilot_ids"])) == 16
     assert manifest["planned_verifier_calls"] == 0

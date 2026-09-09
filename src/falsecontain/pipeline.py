@@ -396,6 +396,8 @@ class APIClient:
                         response_headers = response.headers
                         http_status = getattr(response, "status", 200)
                     content = raw["choices"][0]["message"]["content"]
+                    if not isinstance(content, str):
+                        raise ValueError("provider response content is not text")
                     parsed = json.loads(content)
                     latency_ms = round((time.perf_counter() - started) * 1000)
                     usage = raw.get("usage", {})
@@ -411,7 +413,7 @@ class APIClient:
                     parsed["provider_request_id"] = request_id
                     parsed["attempt_log"] = attempt_log
                     return parsed
-                except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, KeyError) as exc:
+                except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
                     last_error = exc
                     status, reason, request_id, usage, eligible = self._failure_details(exc)
                     status = status or http_status
