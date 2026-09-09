@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.5.7 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.5.7 preserves the v1.5 model-substitution amendment and prior operational corrections, and omits the provider-specific structured-output request field for TokenRouter while retaining strict JSON parsing. The v1.4, v1.5, v1.5.1, v1.5.2, v1.5.3, v1.5.4, v1.5.5, and v1.5.6 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.7 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.6 ON 2026-09-09; FRESH DEEPSEEK-V4-FLASH PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.6 replaces the unusable GLM-5.3-free Agent 1 route with direct DeepSeek `deepseek-v4-flash`. The v1.4 through v1.5.7 tags, DeepSeek NIM pilot, GLM pilot attempts, and all prior artifacts remain preserved. No v1.6 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 
@@ -23,13 +23,13 @@ All four evidence packets for a case-agent combination come from the same agent 
 
 Agent 1:
 
-- Provider: TokenRouter
-- Model: `z-ai/glm-5.3-free`
-- API key environment variable: `AGENT_1_API_KEY_PRIMARY`
-- Endpoint: `https://api.tokenrouter.com/v1/chat/completions`
+- Provider: DeepSeek direct API
+- Model: `deepseek-v4-flash`
+- API key environment variable: `DEEPSEEK_1`
+- Endpoint: `https://api.deepseek.com/v1/chat/completions`
 - Temperature: `0.7`
-- Maximum completion tokens: `4096`
-- Reasoning effort: `low`, sent through `chat_template_kwargs.reasoning_effort=low` because GLM-5.3 does not support disabled reasoning
+- Maximum completion tokens: `1400`
+- Thinking: disabled; no reasoning override is sent
 
 Agent 2:
 

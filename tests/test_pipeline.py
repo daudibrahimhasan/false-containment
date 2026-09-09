@@ -73,9 +73,9 @@ def test_exact_four_model_roles_are_configured():
     assert config["scientific_lock"] is True
     assert config["pilot_completed"] is False
     assert config["primary_judgment_order_seed"] == 20260909
-    assert [item["model"] for item in config["agent_models"]] == ["z-ai/glm-5.3-free", "gemini-3.7-flash"]
-    assert config["agent_models"][0]["provider"] == "tokenrouter"
-    assert config["agent_models"][0]["api_key_env"] == "AGENT_1_API_KEY_PRIMARY"
+    assert [item["model"] for item in config["agent_models"]] == ["deepseek-v4-flash", "gemini-3.7-flash"]
+    assert config["agent_models"][0]["provider"] == "deepseek"
+    assert config["agent_models"][0]["api_key_env"] == "DEEPSEEK_1"
     assert config["agent_models"][1]["api_key_env"] == "AGENT_2_API_KEY_PRIMARY"
     assert config["agent_models"][1]["fallback_api_key_env"] == "AGENT_2_API_KEY_FALLBACK"
     assert config["agent_models"][1]["thinking_level"] == "low"
@@ -143,13 +143,13 @@ def test_v1_3_manifest_has_exact_fresh_pilot_jobs_and_no_verifiers():
     config = read_json(ROOT / "config" / "experiment.json")
     cases = load_cases(ROOT)
     manifest, _ = build_pilot_manifest(ROOT, config, cases, verify_tag=False)
-    assert manifest["preregistration_version"] == "1.5.7"
+    assert manifest["preregistration_version"] == "1.6.0"
     assert manifest["planned_logical_agent_calls"] == 16
     assert len(set(manifest["planned_logical_pilot_ids"])) == 16
     assert manifest["planned_verifier_calls"] == 0
-    assert all("deepseek-ai_deepseek-v4-pro-0813" not in job_id for job_id in manifest["planned_logical_pilot_ids"])
+    assert all("z-ai_glm-5.3-free" not in job_id for job_id in manifest["planned_logical_pilot_ids"])
     assert sum("gemini-3.7-flash" in job_id for job_id in manifest["planned_logical_pilot_ids"]) == 8
-    assert sum("z-ai_glm-5.3-free" in job_id for job_id in manifest["planned_logical_pilot_ids"]) == 8
+    assert sum("deepseek-v4-flash" in job_id for job_id in manifest["planned_logical_pilot_ids"]) == 8
 
 
 def test_deterministic_class_balance_fixture_is_exact_and_non_scientific():
