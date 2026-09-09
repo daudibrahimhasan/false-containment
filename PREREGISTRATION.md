@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.5.5 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.5.5 preserves the v1.5 model-substitution amendment and prior operational corrections, and sends GLM-5.3's supported low reasoning-effort setting in both compatible request locations. The v1.4, v1.5, v1.5.1, v1.5.2, v1.5.3, and v1.5.4 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.5 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.5.6 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.5.6 preserves the v1.5 model-substitution amendment and prior operational corrections, and gives GLM-5.3 a 4,096-token completion cap so its reasoning and required JSON response can both fit. The v1.4, v1.5, v1.5.1, v1.5.2, v1.5.3, v1.5.4, and v1.5.5 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.6 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 
@@ -28,7 +28,7 @@ Agent 1:
 - API key environment variable: `AGENT_1_API_KEY_PRIMARY`
 - Endpoint: `https://api.tokenrouter.com/v1/chat/completions`
 - Temperature: `0.7`
-- Maximum completion tokens: `1400`
+- Maximum completion tokens: `4096`
 - Reasoning effort: `low`, sent through `chat_template_kwargs.reasoning_effort=low` because GLM-5.3 does not support disabled reasoning
 
 Agent 2:

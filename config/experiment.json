@@ -1,11 +1,11 @@
 {
   "experiment_id": "falsecontain_core_v1",
-  "preregistration_version": "1.5.5",
-  "preregistration_tag": "preregistration-v1.5.5",
+  "preregistration_version": "1.5.6",
+  "preregistration_tag": "preregistration-v1.5.6",
   "scientific_lock": true,
   "pilot_completed": false,
   "agent_models": [
-    {"provider": "tokenrouter", "model": "z-ai/glm-5.3-free", "api_key_env": "AGENT_1_API_KEY_PRIMARY", "temperature": 0.7, "max_tokens": 1400, "reasoning_effort": "low"},
+    {"provider": "tokenrouter", "model": "z-ai/glm-5.3-free", "api_key_env": "AGENT_1_API_KEY_PRIMARY", "temperature": 0.7, "max_tokens": 4096, "reasoning_effort": "low"},
     {"provider": "gemini", "model": "gemini-3.7-flash", "api_key_env": "AGENT_2_API_KEY_PRIMARY", "fallback_api_key_env": "AGENT_2_API_KEY_FALLBACK", "max_tokens": 1400, "thinking_level": "low"}
   ],
   "primary_verifier": {"provider": "dashscope", "model": "qwen-max", "api_key_env": "PRIMARY_VERIFIER_API_KEY", "temperature": 0.7, "max_tokens": 900, "thinking": false},
