@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.4 ON 2026-09-09; PILOT GATE PASSED, NO VERIFIER CALLS**
-Version 1.4 changes only the pilot completion gate, as documented in `DESIGN_AMENDMENT_2026-09-09_V1.4.md`. The v1.3.1 tag and completed pilot remain preserved. No v1.4 primary- or secondary-verifier judgment exists. The v1.4 tag records this frozen state.
+Status: **FROZEN v1.5 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.5 changes only Agent 1's response model after the documented DeepSeek pilot-gate failure. The v1.4 tag, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 
@@ -23,10 +23,10 @@ All four evidence packets for a case-agent combination come from the same agent 
 
 Agent 1:
 
-- Provider: NVIDIA NIM
-- Model: `deepseek-ai/deepseek-v4-pro-0813`
-- API key environment variable: `AGENT_1_API_KEY`
-- Endpoint: `https://integrate.api.nvidia.com/v1/chat/completions`
+- Provider: TokenRouter
+- Model: `z-ai/glm-5.3-free`
+- API key environment variable: `AGENT_1_API_KEY_PRIMARY`
+- Endpoint: `https://api.tokenrouter.com/v1/chat/completions`
 - Temperature: `0.7`
 - Maximum completion tokens: `1400`
 - Thinking: disabled through `chat_template_kwargs.enable_thinking=false`
@@ -180,7 +180,7 @@ Packets are rejected before verifier execution if they contain ground-truth fiel
 
 ## Frozen 16-call agent pilot
 
-The v1.3.1 pilot already completed exactly 16 logical response-agent calls and generated 64 packets. Its trajectories and labels are preserved and are evaluated offline under the v1.4 gate; no trajectory is rerun. The intended setup stratum remains metadata about the environment design. It does not override the final ground-truth label, which comes only from deterministic final simulator state.
+The v1.3.1 DeepSeek pilot and the v1.4 offline evaluation remain preserved as historical artifacts. DeepSeek failed the earlier pilot gate because its access-control intended-resolved trajectory was environment-derived unresolved after an incomplete remediation plan. That result was diagnosed as model behavior, not an implementation or interface bug. Version 1.5 therefore requires a fresh 16-call pilot with GLM-5.3; no DeepSeek trajectory may be reused for the new pilot. The intended setup stratum remains metadata about the environment design. It does not override the final ground-truth label, which comes only from deterministic final simulator state.
 
 Before the first provider call, write a manifest containing the preregistration, experiment configuration, shared agent prompt, incident/specification, and simulator hashes; exact Agent 1 and Agent 2 model specifications and generation parameters; frozen Git commit and preregistration tag; and all 16 planned logical pilot IDs. Cache reuse is blocked if the manifest or trajectory-bound hashes differ.
 
@@ -194,7 +194,7 @@ The secondary replication contains exactly 32 judgments:
 4 families x 2 intended matched states x 1 fixed agent x 4 evidence levels = 32
 ```
 
-The fixed agent is Agent 1, `deepseek-ai/deepseek-v4-pro-0813`, using its only trajectory replicate, called replicate 0 for the selection rule. Every evidence level is selected for every Agent-1 case trajectory. There is one secondary-verifier judgment per selected packet and no secondary replicate.
+The fixed secondary-subset definition remains unchanged from v1.4 and still contains the preselected Agent-1 DeepSeek packet IDs. It is not regenerated or changed by the v1.5 Agent-1 model substitution. Every evidence level is selected for every packet in that unchanged subset. There is one secondary-verifier judgment per selected packet and no secondary replicate.
 
 The exact immutable IDs are stored in `config/secondary_subset.json`. Its frozen SHA-256 is:
 
@@ -214,10 +214,10 @@ The four mechanism-specific stress cases are exploratory. They are excluded from
 
 ## Scientific execution sequence
 
-1. Commit and tag this frozen preregistration, code, cases, prompt, and secondary subset.
+1. Commit and tag this frozen v1.5 preregistration, code, cases, prompt, and unchanged secondary subset.
 2. Recheck the tag and offline validations.
-3. Evaluate the completed v1.3.1 pilot artifacts under the v1.4 gate without rerunning trajectories.
-4. If the pilot passes, report eligibility for `pilot_completed=true`; do not change the flag or start the 192 without explicit approval.
+3. Run the fresh v1.5 16-call GLM-5.3/ Gemini response-agent pilot from an empty v1.5 output directory. Do not reuse DeepSeek trajectories.
+4. If the fresh pilot passes, report eligibility for `pilot_completed=true`; do not start the 192 without explicit approval.
 5. Run exactly 192 primary judgments.
 6. Run exactly 32 secondary-verifier judgments.
 7. Run the four exploratory stress cases separately.

@@ -69,3 +69,22 @@ false-containment validate-classes
 ```
 
 It executes eight fixed valid simulator trajectories, requires exactly four resolved and four unresolved outcomes, generates all 32 E1-E4 packets, checks E4 against hidden final state, checks matched cessation evidence, and runs leakage protection. Outputs are isolated under `outputs/validation_class_balance` and explicitly marked non-scientific.
+# Primary runner
+
+The locked core has a production-style terminal runner with colored Rich output, deterministic job planning, incremental CSV writes, and crash-safe checkpoints. The dry-run uses only the local mock client and makes zero provider calls.
+
+```powershell
+$env:PYTHONPATH = "src"
+python -m falsecontain.cli run-primary --dry-run --run-id core_dry_run
+python -m falsecontain.cli status core_dry_run
+python -m falsecontain.cli validate-run core_dry_run
+```
+
+The real run is intentionally blocked until `pilot_completed` is true and provider preflight succeeds:
+
+```powershell
+python -m falsecontain.cli run-primary --run-id core_v1_final
+python -m falsecontain.cli run-primary --resume --run-id core_v1_final
+```
+
+Run outputs are written under `outputs/primary_runs/<run_id>/`, including `planned_primary_jobs.csv`, `trajectories.csv`, `primary_judgments.csv`, `api_calls.csv`, `run_events.csv`, `checkpoint.json`, `manifest.json`, and `run_summary.json`.
