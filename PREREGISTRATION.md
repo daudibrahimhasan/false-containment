@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.5 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.5 changes only Agent 1's response model after the documented DeepSeek pilot-gate failure. The v1.4 tag, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.5.1 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.5.1 preserves the v1.5 model-substitution amendment and packages the TokenRouter provider mapping required to execute it. The v1.4 and v1.5 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.1 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 

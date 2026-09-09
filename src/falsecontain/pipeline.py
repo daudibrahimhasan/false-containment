@@ -280,6 +280,7 @@ class APIRequestFailure(RuntimeError):
 class APIClient:
     ENV_KEYS = {
         "deepseek": ("DEEPSEEK_API_KEY", "AGENT_1_API_KEY"),
+        "tokenrouter": ("AGENT_1_API_KEY_PRIMARY", "AGENT_1_API_KEY"),
         "gemini": ("GEMINI_API_KEY", "AGENT_2_API_KEY"),
         "dashscope": ("DASHSCOPE_API_KEY", "PRIMARY_VERIFIER_API_KEY"),
         "nvidia": ("NVIDIA_API_KEY", "SECONDARY_VERIFIER_API_KEY"),

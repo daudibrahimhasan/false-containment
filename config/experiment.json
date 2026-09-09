@@ -1,7 +1,7 @@
 {
   "experiment_id": "falsecontain_core_v1",
-  "preregistration_version": "1.5.0",
-  "preregistration_tag": "preregistration-v1.5.0",
+  "preregistration_version": "1.5.1",
+  "preregistration_tag": "preregistration-v1.5.1",
   "scientific_lock": true,
   "pilot_completed": false,
   "agent_models": [
