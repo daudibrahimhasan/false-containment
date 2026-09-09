@@ -620,8 +620,17 @@ def run_stress(root: Path, mock: bool = False, include_broad: bool = False) -> d
     if errors:
         raise ValueError("Stress validation failed:\n- " + "\n- ".join(errors))
     if not mock:
-        core_rows_path = root / "outputs" / "scientific" / "results" / "rows.json"
-        if not config.get("scientific_lock") or not core_rows_path.exists() or len(read_json(core_rows_path)) != 192:
+        core_complete = False
+        for candidate in (root / "outputs" / "primary_runs").glob("*"):
+            status_path = candidate / "status.json"
+            if status_path.exists():
+                try:
+                    if read_json(status_path).get("scientific_complete") is True:
+                        core_complete = True
+                        break
+                except (OSError, ValueError, TypeError):
+                    pass
+        if not config.get("scientific_lock") or not core_complete:
             raise ValueError("real stress execution is blocked until the locked 192-judgment core run is complete")
     load_env(root / ".env")
     client: Any = MockClient() if mock else APIClient(config)
