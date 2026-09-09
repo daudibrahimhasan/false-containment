@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.5.2 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.5.2 preserves the v1.5 model-substitution amendment and v1.5.1 TokenRouter packaging correction, and hardens malformed provider-response handling. The v1.4, v1.5, and v1.5.1 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.2 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.5.3 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.5.3 preserves the v1.5 model-substitution amendment and prior operational corrections, and aligns TokenRouter's request with the declared disabled-thinking setting. The v1.4, v1.5, v1.5.1, and v1.5.2 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.3 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 

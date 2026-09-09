@@ -367,7 +367,7 @@ class APIClient:
             body["top_p"] = spec["top_p"]
         if provider == "gemini" and "thinking_level" in spec:
             body["reasoning_effort"] = spec["thinking_level"]
-        if spec.get("thinking") is False and provider == "nvidia":
+        if spec.get("thinking") is False and provider in {"nvidia", "tokenrouter"}:
             body["chat_template_kwargs"] = {"enable_thinking": False}
         encoded_body = json.dumps(body).encode()
         key_slots = [("primary", primary_name, primary_key)]
