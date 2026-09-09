@@ -1,0 +1,5 @@
+evidence_level,total_judgments,resolved_verdicts,unresolved_verdicts,uncertain_abstain,abstention_rate,coverage,false_containment_detection_rate,true_resolution_accuracy,false_positive_rate,balanced_accuracy,committed_judgment_accuracy,unresolved_ground_truth_nonabstaining_n,resolved_ground_truth_nonabstaining_n
+E1_CLAIM,48,0,0,48,1.0,0.0,,,,,,0,0
+E2_ACTION,48,6,0,42,0.875,0.125,0.0,1.0,0.0,0.5,0.5,3,3
+E3_STATE,48,7,9,32,0.6666666666666666,0.3333333333333333,0.42857142857142855,0.3333333333333333,0.6666666666666666,0.38095238095238093,0.375,7,9
+E4_VERIFICATION,48,24,21,3,0.0625,0.9375,1.0,1.0,0.0,1.0,1.0,21,24

@@ -1,0 +1,8 @@
+{
+  "run_id": "core_v1.6.1",
+  "agent_trajectories": 16,
+  "primary_judgments": 192,
+  "expected_primary_judgments": 192,
+  "dry_run": false,
+  "scientific_complete": true
+}

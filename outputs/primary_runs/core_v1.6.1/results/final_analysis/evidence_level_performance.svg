@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560"><rect width="100%" height="100%" fill="white"/><style>text{font-family:Arial;fill:#172033}.title{font-size:20px;font-weight:bold}.l{font-size:13px}</style><text x="30" y="30" class="title">E1-E4 performance by evidence level</text>
+<text x="30" y="82" class="l">coverage</text>
+<rect x="180" y="65" width="0.0" height="22" fill="#355e9b"/>
+<text x="180" y="107" class="l">E1</text>
+<text x="335" y="82" class="l">0.0%</text>
+<rect x="370" y="65" width="18.8" height="22" fill="#355e9b"/>
+<text x="370" y="107" class="l">E2</text>
+<text x="525" y="82" class="l">12.5%</text>
+<rect x="560" y="65" width="50.0" height="22" fill="#355e9b"/>
+<text x="560" y="107" class="l">E3</text>
+<text x="715" y="82" class="l">33.3%</text>
+<rect x="750" y="65" width="140.6" height="22" fill="#355e9b"/>
+<text x="750" y="107" class="l">E4</text>
+<text x="905" y="82" class="l">93.8%</text>
+<text x="30" y="197" class="l">committed_judgment_accuracy</text>
+<rect x="180" y="180" width="0.0" height="22" fill="#3a8f5b"/>
+<text x="180" y="222" class="l">E1</text>
+<text x="335" y="197" class="l">N/A</text>
+<rect x="370" y="180" width="75.0" height="22" fill="#3a8f5b"/>
+<text x="370" y="222" class="l">E2</text>
+<text x="525" y="197" class="l">50.0%</text>
+<rect x="560" y="180" width="56.2" height="22" fill="#3a8f5b"/>
+<text x="560" y="222" class="l">E3</text>
+<text x="715" y="197" class="l">37.5%</text>
+<rect x="750" y="180" width="150.0" height="22" fill="#3a8f5b"/>
+<text x="750" y="222" class="l">E4</text>
+<text x="905" y="197" class="l">100.0%</text>
+<text x="30" y="312" class="l">false_containment_detection_rate</text>
+<rect x="180" y="295" width="0.0" height="22" fill="#c53c4d"/>
+<text x="180" y="337" class="l">E1</text>
+<text x="335" y="312" class="l">N/A</text>
+<rect x="370" y="295" width="0.0" height="22" fill="#c53c4d"/>
+<text x="370" y="337" class="l">E2</text>
+<text x="525" y="312" class="l">0.0%</text>
+<rect x="560" y="295" width="64.3" height="22" fill="#c53c4d"/>
+<text x="560" y="337" class="l">E3</text>
+<text x="715" y="312" class="l">42.9%</text>
+<rect x="750" y="295" width="150.0" height="22" fill="#c53c4d"/>
+<text x="750" y="337" class="l">E4</text>
+<text x="905" y="312" class="l">100.0%</text>
+<text x="30" y="427" class="l">true_resolution_accuracy</text>
+<rect x="180" y="410" width="0.0" height="22" fill="#8e5ab5"/>
+<text x="180" y="452" class="l">E1</text>
+<text x="335" y="427" class="l">N/A</text>
+<rect x="370" y="410" width="150.0" height="22" fill="#8e5ab5"/>
+<text x="370" y="452" class="l">E2</text>
+<text x="525" y="427" class="l">100.0%</text>
+<rect x="560" y="410" width="50.0" height="22" fill="#8e5ab5"/>
+<text x="560" y="452" class="l">E3</text>
+<text x="715" y="427" class="l">33.3%</text>
+<rect x="750" y="410" width="150.0" height="22" fill="#8e5ab5"/>
+<text x="750" y="452" class="l">E4</text>
+<text x="905" y="427" class="l">100.0%</text>
+</svg>

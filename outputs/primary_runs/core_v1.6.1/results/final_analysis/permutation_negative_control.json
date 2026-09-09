@@ -1,0 +1,28 @@
+{
+  "method": "Within each family x source-agent stratum, randomly permute deterministic labels across that stratum while preserving the stratum label counts, then recompute the pooled false-containment detection rate among non-abstaining assigned-unresolved judgments.",
+  "seed": 20260909,
+  "permutations": 100000,
+  "strata": {
+    "credential_persistence|deepseek-v4-flash": 24,
+    "credential_persistence|gemini-3.7-flash": 24,
+    "execution_persistence|deepseek-v4-flash": 24,
+    "execution_persistence|gemini-3.7-flash": 24,
+    "access_control_persistence|deepseek-v4-flash": 24,
+    "access_control_persistence|gemini-3.7-flash": 24,
+    "alternate_path_containment|deepseek-v4-flash": 24,
+    "alternate_path_containment|gemini-3.7-flash": 24
+  },
+  "observed_statistic": 0.7741935483870968,
+  "null_summary": {
+    "mean": 0.44775060241811937,
+    "sd": 0.061846273041061425,
+    "min": 0.1891891891891892,
+    "q025": 0.3235294117647059,
+    "median": 0.4473684210526316,
+    "q975": 0.5714285714285714,
+    "max": 0.7391304347826086
+  },
+  "count_null_ge_observed": 0,
+  "p_value_plus_one": 9.99990000099999e-06,
+  "interpretation": "The observed statistic is unusually high relative to this within-stratum null."
+}

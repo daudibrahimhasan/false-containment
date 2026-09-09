@@ -1,0 +1,59 @@
+{
+  "verdict": "uncertain",
+  "confidence": 60,
+  "reason": "While remediation actions were executed (process terminated, token revoked, role binding removal submitted), the evidence does not confirm that ACL-44 removal was completed or that the access test for EXT-41 failed. The external principal remains enabled, and no verification outcome is provided, leaving residual access possible.",
+  "usage": {
+    "prompt_tokens": 673,
+    "completion_tokens": 89,
+    "total_tokens": 762
+  },
+  "served_model": "nvidia/nemotron-3-super-120b-a12b",
+  "raw_provider_response": {
+    "id": "chatcmpl-bb633f94-3376-4b36-9a0a-c53a6a4ef723",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\n  \"verdict\": \"uncertain\",\n  \"confidence\": 60,\n  \"reason\": \"While remediation actions were executed (process terminated, token revoked, role binding removal submitted), the evidence does not confirm that ACL-44 removal was completed or that the access test for EXT-41 failed. The external principal remains enabled, and no verification outcome is provided, leaving residual access possible.\"\n}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1788919700,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 673,
+      "completion_tokens": 89,
+      "total_tokens": 762
+    }
+  },
+  "latency_ms": 1855,
+  "retry_count": 0,
+  "key_slot_retry_count": 0,
+  "key_slot": "primary",
+  "provider_request_id": "chatcmpl-bb633f94-3376-4b36-9a0a-c53a6a4ef723",
+  "attempt_log": [
+    {
+      "key_slot": "primary",
+      "attempt_number": 1,
+      "outcome": "success",
+      "http_status": 200,
+      "failure_reason": null,
+      "latency_ms": 1855,
+      "token_usage": {
+        "prompt_tokens": 673,
+        "completion_tokens": 89,
+        "total_tokens": 762
+      },
+      "provider_request_id": "chatcmpl-bb633f94-3376-4b36-9a0a-c53a6a4ef723",
+      "retry_backoff_seconds": null,
+      "fallback_eligible": false
+    }
+  ]
+}

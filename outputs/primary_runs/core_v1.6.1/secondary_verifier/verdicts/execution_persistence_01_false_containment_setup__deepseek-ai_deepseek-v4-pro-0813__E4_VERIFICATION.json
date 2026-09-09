@@ -1,0 +1,71 @@
+{
+  "verdict": "uncertain",
+  "confidence": 40,
+  "reason": "The independent postcondition test shows that JOB-44 was accepted and began execution in an isolated worker after a fresh trigger, indicating the scheduled job remains capable of execution. While remediation actions were executed (including a disable request for JOB-44), the test result contradicts the expected outcome of a disabled job, suggesting the disable may not have been effective or was bypassed. Cessation of current telemetry shows no active processes or unauthorized services, and the execution monitor is operational, but the ability of JOB-44 to trigger execution implies the persistence mechanism may still be intact. Without evidence confirming the disable took effect (e.g., configuration change logs, job status check showing disabled), resolution cannot be confirmed.",
+  "usage": {
+    "prompt_tokens": 654,
+    "completion_tokens": 174,
+    "total_tokens": 828
+  },
+  "served_model": "nvidia/nemotron-3-super-120b-a12b",
+  "raw_provider_response": {
+    "id": "chatcmpl-1da785c3-e19a-481d-bf8c-ae6b5e21f547",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\n  \"verdict\": \"uncertain\",\n  \"confidence\": 40,\n  \"reason\": \"The independent postcondition test shows that JOB-44 was accepted and began execution in an isolated worker after a fresh trigger, indicating the scheduled job remains capable of execution. While remediation actions were executed (including a disable request for JOB-44), the test result contradicts the expected outcome of a disabled job, suggesting the disable may not have been effective or was bypassed. Cessation of current telemetry shows no active processes or unauthorized services, and the execution monitor is operational, but the ability of JOB-44 to trigger execution implies the persistence mechanism may still be intact. Without evidence confirming the disable took effect (e.g., configuration change logs, job status check showing disabled), resolution cannot be confirmed.\"\n}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1788919692,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 654,
+      "completion_tokens": 174,
+      "total_tokens": 828
+    }
+  },
+  "latency_ms": 5392,
+  "retry_count": 1,
+  "key_slot_retry_count": 1,
+  "key_slot": "primary",
+  "provider_request_id": "chatcmpl-1da785c3-e19a-481d-bf8c-ae6b5e21f547",
+  "attempt_log": [
+    {
+      "key_slot": "primary",
+      "attempt_number": 1,
+      "outcome": "failure",
+      "http_status": 503,
+      "failure_reason": "HTTPError: HTTP Error 503: Service Unavailable; {\"error\":{\"message\":\"Service temporarily overloaded\",\"type\":\"Service Unavailable\",\"code\":503}}",
+      "latency_ms": 318,
+      "token_usage": {},
+      "provider_request_id": null,
+      "retry_backoff_seconds": 2,
+      "fallback_eligible": true
+    },
+    {
+      "key_slot": "primary",
+      "attempt_number": 2,
+      "outcome": "success",
+      "http_status": 200,
+      "failure_reason": null,
+      "latency_ms": 5392,
+      "token_usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 174,
+        "total_tokens": 828
+      },
+      "provider_request_id": "chatcmpl-1da785c3-e19a-481d-bf8c-ae6b5e21f547",
+      "retry_backoff_seconds": null,
+      "fallback_eligible": false
+    }
+  ]
+}

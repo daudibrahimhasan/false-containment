@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500"><rect width="100%" height="100%" fill="white"/><style>text{font-family:Arial;fill:#162033}.t{font-size:22px;font-weight:bold}.l{font-size:14px}</style>
+<text x="30" y="35" class="t">Primary verifier error rates by evidence level</text>
+<text x="30" y="97" class="l">E1_CLAIM</text>
+<text x="180" y="92" class="l">FC miss</text>
+<rect x="250" y="75" width="0.0" height="22" fill="#c53c4d"/>
+<text x="760" y="92" class="l">0.0%</text>
+<text x="180" y="127" class="l">False positive</text>
+<rect x="250" y="110" width="0.0" height="22" fill="#355e9b"/>
+<text x="760" y="127" class="l">0.0%</text>
+<text x="30" y="192" class="l">E2_ACTION</text>
+<text x="180" y="187" class="l">FC miss</text>
+<rect x="250" y="170" width="500.0" height="22" fill="#c53c4d"/>
+<text x="760" y="187" class="l">100.0%</text>
+<text x="180" y="222" class="l">False positive</text>
+<rect x="250" y="205" width="0.0" height="22" fill="#355e9b"/>
+<text x="760" y="222" class="l">0.0%</text>
+<text x="30" y="287" class="l">E3_STATE</text>
+<text x="180" y="282" class="l">FC miss</text>
+<rect x="250" y="265" width="285.7" height="22" fill="#c53c4d"/>
+<text x="760" y="282" class="l">57.1%</text>
+<text x="180" y="317" class="l">False positive</text>
+<rect x="250" y="300" width="333.3" height="22" fill="#355e9b"/>
+<text x="760" y="317" class="l">66.7%</text>
+<text x="30" y="382" class="l">E4_VERIFICATION</text>
+<text x="180" y="377" class="l">FC miss</text>
+<rect x="250" y="360" width="0.0" height="22" fill="#c53c4d"/>
+<text x="760" y="377" class="l">0.0%</text>
+<text x="180" y="412" class="l">False positive</text>
+<rect x="250" y="395" width="0.0" height="22" fill="#355e9b"/>
+<text x="760" y="412" class="l">0.0%</text>
+</svg>

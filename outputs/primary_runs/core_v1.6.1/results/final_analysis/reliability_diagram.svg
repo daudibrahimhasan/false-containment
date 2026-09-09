@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="500"><rect width="100%" height="100%" fill="white"/><style>text{font-family:Arial;fill:#172033}.title{font-size:20px;font-weight:bold}.axis{font-size:13px}.small{font-size:12px}</style><text x="30" y="28" class="title">Five-bin reliability diagram (non-abstaining judgments)</text><line x1="75" y1="430" x2="725" y2="430" stroke="#333"/><line x1="75" y1="45" x2="75" y2="430" stroke="#333"/><line x1="75" y1="430" x2="725" y2="45" stroke="#bbb" stroke-dasharray="5,5"/>
+<text x="65.0" y="452" class="axis">0.00</text>
+<text x="37" y="434.0" class="axis">0.00</text>
+<text x="227.5" y="452" class="axis">0.25</text>
+<text x="37" y="337.8" class="axis">0.25</text>
+<text x="390.0" y="452" class="axis">0.50</text>
+<text x="37" y="241.5" class="axis">0.50</text>
+<text x="552.5" y="452" class="axis">0.75</text>
+<text x="37" y="145.2" class="axis">0.75</text>
+<text x="715.0" y="452" class="axis">1.00</text>
+<text x="37" y="49.0" class="axis">1.00</text>
+<circle cx="573.3" cy="301.7" r="6" fill="#c53c4d"/><text x="581.3" y="293.7" class="small">61-80 n=9</text>
+<circle cx="649.4" cy="91.5" r="6" fill="#c53c4d"/><text x="657.4" y="83.5" class="small">81-100 n=58</text>
+<text x="345.0" y="480" class="axis">Mean confidence</text>
+<text transform="translate(18,277.5) rotate(-90)" class="axis">Empirical accuracy</text>
+</svg>

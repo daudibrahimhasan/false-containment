@@ -1,0 +1,66 @@
+{
+  "verdict": "unresolved",
+  "confidence": 85,
+  "reason": "The broader scope test indicates that RLY-61 still permits outbound transfer, suggesting that not all egress routes have been properly contained or remediated. This implies that the known security-relevant compromise may still be operational through this unblocked route.",
+  "usage": {
+    "prompt_tokens": 663,
+    "completion_tokens": 74,
+    "total_tokens": 737,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "served_model": "qwen-max",
+  "raw_provider_response": {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"verdict\": \"unresolved\",\n  \"confidence\": 85,\n  \"reason\": \"The broader scope test indicates that RLY-61 still permits outbound transfer, suggesting that not all egress routes have been properly contained or remediated. This implies that the known security-relevant compromise may still be operational through this unblocked route.\"\n}"
+        },
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null
+      }
+    ],
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 663,
+      "completion_tokens": 74,
+      "total_tokens": 737,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "created": 1788919838,
+    "system_fingerprint": null,
+    "model": "qwen-max",
+    "id": "chatcmpl-9ba4b87e-f06c-9eee-9b4d-8c5b86a6c186"
+  },
+  "latency_ms": 2229,
+  "retry_count": 0,
+  "key_slot_retry_count": 0,
+  "key_slot": "primary",
+  "provider_request_id": "9ba4b87e-f06c-9eee-9b4d-8c5b86a6c186",
+  "attempt_log": [
+    {
+      "key_slot": "primary",
+      "attempt_number": 1,
+      "outcome": "success",
+      "http_status": 200,
+      "failure_reason": null,
+      "latency_ms": 2229,
+      "token_usage": {
+        "prompt_tokens": 663,
+        "completion_tokens": 74,
+        "total_tokens": 737,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "provider_request_id": "9ba4b87e-f06c-9eee-9b4d-8c5b86a6c186",
+      "retry_backoff_seconds": null,
+      "fallback_eligible": false
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "overall": {
+    "packets": 64,
+    "exact_3way_agreement_rate": 0.9375,
+    "pairwise_agreement_rate": 0.9583333333333334,
+    "fleiss_kappa": 0.9190300474433316,
+    "matching_pairs": 184,
+    "total_pairs": 192
+  },
+  "by_evidence": {
+    "E1_CLAIM": {
+      "packets": 16,
+      "exact_3way_agreement_rate": 1.0,
+      "pairwise_agreement_rate": 1.0,
+      "fleiss_kappa": null,
+      "matching_pairs": 48,
+      "total_pairs": 48
+    },
+    "E2_ACTION": {
+      "packets": 16,
+      "exact_3way_agreement_rate": 0.875,
+      "pairwise_agreement_rate": 0.9166666666666666,
+      "fleiss_kappa": 0.6190476190476194,
+      "matching_pairs": 44,
+      "total_pairs": 48
+    },
+    "E3_STATE": {
+      "packets": 16,
+      "exact_3way_agreement_rate": 0.875,
+      "pairwise_agreement_rate": 0.9166666666666666,
+      "fleiss_kappa": 0.8330434782608697,
+      "matching_pairs": 44,
+      "total_pairs": 48
+    },
+    "E4_VERIFICATION": {
+      "packets": 16,
+      "exact_3way_agreement_rate": 1.0,
+      "pairwise_agreement_rate": 1.0,
+      "fleiss_kappa": 1.0,
+      "matching_pairs": 48,
+      "total_pairs": 48
+    }
+  }
+}

@@ -1,0 +1,507 @@
+call_id,timestamp_utc,phase,provider,requested_model,served_model,related_id,attempt,latency_seconds,http_status,input_tokens,output_tokens,total_tokens,retry_reason,success,key_slot
+credential_persistence_01_resolved_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.018108+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,credential_persistence_01_resolved_setup__deepseek-v4-flash,1,15.067,200,365,1865,2230,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.032200+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,credential_persistence_01_resolved_setup__gemini-3.7-flash,1,3.529,200,350,101,574,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.037856+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,credential_persistence_01_false_containment_setup__deepseek-v4-flash,1,11.901,200,364,1453,1817,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.047002+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,credential_persistence_01_false_containment_setup__gemini-3.7-flash,1,5.033,200,350,131,651,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.055577+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,execution_persistence_01_resolved_setup__deepseek-v4-flash,1,12.845,200,376,1591,1967,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.065790+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,execution_persistence_01_resolved_setup__gemini-3.7-flash,1,4.477,200,358,125,613,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.075630+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,execution_persistence_01_false_containment_setup__deepseek-v4-flash,1,32.736,200,376,4096,4472,JSONDecodeError: Expecting value: line 1 column 1 (char 0),False,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash:agent:2,2026-09-09T01:48:43.075630+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,execution_persistence_01_false_containment_setup__deepseek-v4-flash,2,26.592,200,376,3404,3780,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.085677+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,execution_persistence_01_false_containment_setup__gemini-3.7-flash,1,4.616,200,358,115,661,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.094809+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,access_control_persistence_01_resolved_setup__deepseek-v4-flash,1,14.612,200,373,1794,2167,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.101975+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,access_control_persistence_01_resolved_setup__gemini-3.7-flash,1,5.204,200,359,147,753,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.110592+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,access_control_persistence_01_false_containment_setup__deepseek-v4-flash,1,11.281,200,375,1505,1880,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.118319+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,access_control_persistence_01_false_containment_setup__gemini-3.7-flash,1,4.725,200,357,132,748,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.126447+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,alternate_path_containment_01_resolved_setup__deepseek-v4-flash,1,30.436,200,375,4049,4424,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.134562+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_resolved_setup__gemini-3.7-flash,1,0.52,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 10.126747953s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""location"": ""global"",
+              ""model"": ""gemini-3.7-flash""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""10s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash:agent:2,2026-09-09T01:48:43.135581+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_resolved_setup__gemini-3.7-flash,2,0.677,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 7.488934061s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""model"": ""gemini-3.7-flash"",
+              ""location"": ""global""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""7s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash:agent:3,2026-09-09T01:48:43.137751+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_resolved_setup__gemini-3.7-flash,3,0.443,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 2.976659946s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""model"": ""gemini-3.7-flash"",
+              ""location"": ""global""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""2s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash:agent:4,2026-09-09T01:48:43.137751+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_resolved_setup__gemini-3.7-flash,4,0.452,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 54.508692311s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""model"": ""gemini-3.7-flash"",
+              ""location"": ""global""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""54s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.139770+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_resolved_setup__gemini-3.7-flash,1,5.394,200,351,141,642,,True,fallback
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash:agent:1,2026-09-09T01:48:43.145697+00:00,agent,deepseek,deepseek-v4-flash,deepseek-v4-flash,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash,1,10.753,200,372,1316,1688,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.155471+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash,1,1.618,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 36.733921287s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""location"": ""global"",
+              ""model"": ""gemini-3.7-flash""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""36s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash:agent:2,2026-09-09T01:48:43.157523+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash,2,0.655,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 34.116909526s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""location"": ""global"",
+              ""model"": ""gemini-3.7-flash""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""34s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash:agent:3,2026-09-09T01:48:43.157523+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash,3,0.433,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 29.670666698s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""location"": ""global"",
+              ""model"": ""gemini-3.7-flash""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""29s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash:agent:4,2026-09-09T01:48:43.157523+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash,4,0.421,429,,,,"HTTPError: HTTP Error 429: Too Many Requests; [{
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\nPlease retry in 21.216484041s."",
+    ""status"": ""RESOURCE_EXHAUSTED"",
+    ""details"": [
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.Help"",
+        ""links"": [
+          {
+            ""description"": ""Learn more about Gemini API quotas"",
+            ""url"": ""https://ai.google.dev/gemini-api/docs/rate-limits""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.QuotaFailure"",
+        ""violations"": [
+          {
+            ""quotaMetric"": ""generativelanguage.googleapis.com/generate_content_free_tier_requests"",
+            ""quotaId"": ""GenerateRequestsPerDayPerProjectPerModel-FreeTier"",
+            ""quotaDimensions"": {
+              ""model"": ""gemini-3.7-flash"",
+              ""location"": ""global""
+            },
+            ""quotaValue"": ""20""
+          }
+        ]
+      },
+      {
+        ""@type"": ""type.googleapis.com/google.rpc.RetryInfo"",
+        ""retryDelay"": ""21s""
+      }
+    ]
+  }
+}
+]",False,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash:agent:1,2026-09-09T01:48:43.157523+00:00,agent,gemini,gemini-3.7-flash,gemini-3.7-flash,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash,1,6.748,200,353,140,623,,True,fallback
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:48:46.706034+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01,1,3.535,200,375,100,475,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:48:50.455523+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02,1,3.735,200,375,95,470,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:48:53.447242+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.978,200,375,107,482,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:48:55.825328+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01,1,2.367,200,536,85,621,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:48:59.995239+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02,1,4.161,200,536,103,639,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:49:05.161227+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03,1,5.156,200,536,106,642,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:49:10.433519+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01,1,5.251,200,596,102,698,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:49:13.000636+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02,1,2.554,200,596,98,694,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:49:16.440515+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03,1,3.428,200,596,101,697,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:49:19.983638+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,3.532,200,630,118,748,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:49:22.426013+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,2.434,200,630,114,744,,True,primary
+credential_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:49:24.986784+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,2.55,200,630,95,725,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:49:26.997822+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01,1,2.003,200,365,88,453,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:49:29.269260+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02,1,2.264,200,365,93,458,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:49:32.981840+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03,1,3.703,200,365,94,459,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:49:37.247447+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01,1,4.254,200,491,91,582,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:49:40.029582+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.765,200,491,86,577,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:49:42.560784+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03,1,2.509,200,491,108,599,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:49:46.188405+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01,1,3.613,200,551,104,655,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:49:48.628636+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02,1,2.428,200,551,105,656,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:49:51.454345+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03,1,2.815,200,551,103,654,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:49:54.635130+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,3.156,200,585,87,672,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:49:57.354436+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,2.709,200,585,117,702,,True,primary
+credential_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:49:59.692599+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,2.33,200,585,106,691,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:50:03.779041+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01,1,4.073,200,377,109,486,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:50:06.695948+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.908,200,377,105,482,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:50:09.335087+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.63,200,377,110,487,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:50:11.568300+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01,1,2.222,200,503,97,600,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:50:13.958630+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02,1,2.379,200,503,108,611,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:50:16.205482+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03,1,2.237,200,503,100,603,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:50:18.763851+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01,1,2.547,200,563,105,668,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:50:21.810218+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02,1,3.035,200,563,95,658,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:50:24.833023+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03,1,3.014,200,563,110,673,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:50:26.898806+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,2.053,200,597,73,670,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:50:29.075606+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,2.168,200,597,74,671,,True,primary
+credential_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:50:31.190468+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,2.106,200,597,72,669,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:50:33.785124+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01,1,2.583,200,367,97,464,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:50:36.031852+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02,1,2.237,200,367,95,462,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:50:38.434057+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03,1,2.393,200,367,90,457,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:50:40.902132+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01,1,2.46,200,493,94,587,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:50:43.371777+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.463,200,493,84,577,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:50:46.051868+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03,1,2.67,200,493,103,596,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:50:48.890089+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01,1,2.826,200,553,106,659,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:50:51.474976+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02,1,2.574,200,553,106,659,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:50:55.981407+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03,1,4.498,200,553,96,649,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:50:58.299118+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,2.308,200,587,67,654,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:51:01.289695+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,2.981,200,587,64,651,,True,primary
+credential_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:51:03.973896+00:00,verifier,dashscope,qwen-max,qwen-max,credential_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,2.675,200,587,72,659,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:51:07.123002+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01,1,3.137,200,386,106,492,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:51:10.041509+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.909,200,386,98,484,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:51:13.049766+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.996,200,386,95,481,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:51:17.532124+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01,1,4.47,200,484,98,582,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:51:21.788216+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02,1,4.246,200,484,104,588,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:51:24.601459+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03,1,2.799,200,484,92,576,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:51:28.157877+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01,1,3.538,200,540,101,641,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:51:32.754200+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02,1,4.585,200,540,111,651,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:51:35.939953+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03,1,3.178,200,540,94,634,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:51:39.507286+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,3.555,200,581,105,686,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:51:42.785779+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,3.267,200,581,102,683,,True,primary
+execution_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:51:46.019843+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,3.226,200,581,97,678,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:51:49.227309+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01,1,3.195,200,382,84,466,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:51:52.332694+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02,1,3.085,200,382,96,478,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:51:56.700054+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03,1,4.351,200,382,109,491,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:51:59.526826+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01,1,2.806,200,480,98,578,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:52:02.360482+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.815,200,480,103,583,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:52:05.213903+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03,1,2.838,200,480,97,577,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:52:07.876496+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01,1,2.644,200,536,110,646,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:52:10.813936+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02,1,2.925,200,536,102,638,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:52:13.999777+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03,1,3.17,200,536,112,648,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:52:16.979485+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,2.964,200,577,110,687,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:52:19.473447+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,2.482,200,577,102,679,,True,primary
+execution_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:52:22.169091+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,2.682,200,577,95,672,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:52:25.215872+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01,1,3.029,200,383,112,495,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:52:28.045933+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.818,200,383,101,484,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:52:30.412650+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.356,200,383,86,469,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:52:34.664591+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01,1,4.241,200,517,110,627,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:52:37.450655+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02,1,2.777,200,517,113,630,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:52:39.906347+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03,1,2.445,200,517,126,643,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:52:42.833779+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01,1,2.911,200,573,129,702,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:52:46.358177+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02,1,3.512,200,573,122,695,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:52:48.928954+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03,1,2.561,200,573,110,683,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:52:52.087415+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,3.15,200,616,135,751,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:52:55.909211+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,3.81,200,616,127,743,,True,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:55:01.416849+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,120.422,,,,,TimeoutError: The read operation timed out,False,primary
+execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03:2,2026-09-09T01:55:01.419375+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03,2,3.076,200,616,119,735,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:55:04.913016+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01,1,3.45,200,381,127,508,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:55:08.164233+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02,1,3.237,200,381,108,489,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:55:10.894126+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03,1,2.716,200,381,99,480,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:55:13.120014+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01,1,2.189,200,479,97,576,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:55:15.978017+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.843,200,479,109,588,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:55:18.421268+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03,1,2.426,200,479,115,594,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:55:22.640310+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01,1,4.211,200,535,107,642,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:55:24.828979+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02,1,2.176,200,535,113,648,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:55:27.135950+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03,1,2.29,200,535,110,645,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:55:29.069678+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,1.913,200,578,78,656,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:55:30.672977+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,1.586,200,578,69,647,,True,primary
+execution_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:55:32.677245+00:00,verifier,dashscope,qwen-max,qwen-max,execution_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,1.992,200,578,76,654,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:55:35.137148+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01,1,2.445,200,395,99,494,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:55:37.636585+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.482,200,395,123,518,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:55:40.132910+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.48,200,395,120,515,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:55:42.791936+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01,1,2.638,200,556,90,646,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:55:45.274503+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02,1,2.467,200,556,92,648,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:55:48.039532+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03,1,2.752,200,556,109,665,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:55:50.591840+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01,1,2.536,200,634,87,721,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:55:54.079466+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02,1,3.469,200,634,116,750,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:55:56.708503+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03,1,2.614,200,634,107,741,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:55:58.752929+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,2.024,200,669,105,774,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:56:01.366727+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,2.587,200,669,95,764,,True,primary
+access_control_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:56:03.616478+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,2.236,200,669,106,775,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:56:05.830470+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01,1,2.199,200,378,109,487,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:56:07.882875+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02,1,2.04,200,378,109,487,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:56:09.841746+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03,1,1.948,200,378,108,486,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:56:12.415890+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01,1,2.558,200,538,105,643,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:56:14.701960+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.268,200,538,119,657,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:56:17.452935+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03,1,2.735,200,538,120,658,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:56:19.936817+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01,1,2.445,200,616,106,722,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:56:23.035945+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02,1,3.082,200,616,100,716,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:56:25.152006+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03,1,2.103,200,616,101,717,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:56:27.767383+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,2.599,200,651,131,782,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:56:30.021694+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,2.246,200,651,108,759,,True,primary
+access_control_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:56:32.372152+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,2.342,200,651,132,783,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:56:35.298903+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01,1,2.916,200,367,94,461,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:56:37.720519+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.411,200,367,103,470,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:56:39.764183+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.029,200,367,107,474,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:56:42.410017+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01,1,2.618,200,471,122,593,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:56:44.432460+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02,1,2.009,200,471,98,569,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:56:46.553749+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03,1,2.099,200,471,99,570,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:56:48.366923+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01,1,1.792,200,548,78,626,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:56:50.866358+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02,1,2.484,200,548,92,640,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:56:52.932606+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03,1,2.051,200,548,104,652,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:56:54.541820+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,1.592,200,583,70,653,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:56:57.167664+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,2.613,200,583,64,647,,True,primary
+access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:56:59.215906+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,2.03,200,583,72,655,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:57:01.411616+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01,1,2.183,200,376,104,480,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:57:03.718096+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02,1,2.295,200,376,115,491,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:57:05.814398+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03,1,2.087,200,376,105,481,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:57:07.565924+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01,1,1.74,200,536,84,620,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:57:09.752671+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.178,200,536,112,648,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:57:11.347672+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03,1,1.581,200,536,79,615,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:57:13.601729+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01,1,2.238,200,614,106,720,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:57:15.699018+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02,1,2.089,200,614,106,720,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:57:17.901757+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03,1,2.195,200,614,114,728,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:57:20.026511+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,2.107,200,649,89,738,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:57:22.302678+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,2.269,200,649,108,757,,True,primary
+access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:57:24.385933+00:00,verifier,dashscope,qwen-max,qwen-max,access_control_persistence_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,2.075,200,649,96,745,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:57:26.255534+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r01,1,1.858,200,359,86,445,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:57:28.582682+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.316,200,359,116,475,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:57:30.952865+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E1_CLAIM__r03,1,2.362,200,359,98,457,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:57:33.855731+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r01,1,2.891,200,525,117,642,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:57:35.923546+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r02,1,2.059,200,525,103,628,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:57:39.003386+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E2_ACTION__r03,1,3.07,200,525,94,619,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:57:41.558341+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E3_STATE__r01,1,2.538,200,586,137,723,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:57:43.838695+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E3_STATE__r02,1,2.271,200,586,110,696,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:57:46.055880+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E3_STATE__r03,1,2.208,200,586,109,695,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:57:48.565056+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,2.5,200,624,119,743,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:57:51.123704+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,2.55,200,624,106,730,,True,primary
+alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:57:53.547439+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,2.413,200,624,111,735,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:57:55.939557+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r01,1,2.377,200,388,98,486,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:57:58.099508+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r02,1,2.151,200,388,106,494,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:58:00.364166+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E1_CLAIM__r03,1,2.253,200,388,99,487,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:58:03.035488+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r01,1,2.66,200,515,111,626,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:58:05.767235+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.716,200,515,111,626,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:58:08.221376+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E2_ACTION__r03,1,2.444,200,515,111,626,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:58:10.454455+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E3_STATE__r01,1,2.222,200,576,116,692,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:58:12.699042+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E3_STATE__r02,1,2.235,200,576,115,691,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:58:15.603616+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E3_STATE__r03,1,2.896,200,576,117,693,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:58:17.854402+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,2.239,200,614,96,710,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:58:19.915420+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,2.051,200,614,98,712,,True,primary
+alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:58:21.816412+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_resolved_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,1.891,200,614,110,724,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01:1,2026-09-09T01:58:24.741358+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r01,1,2.914,200,353,87,440,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02:1,2026-09-09T01:58:27.681520+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r02,1,2.932,200,353,107,460,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03:1,2026-09-09T01:58:30.858491+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E1_CLAIM__r03,1,3.167,200,353,108,461,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01:1,2026-09-09T01:58:33.212571+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r01,1,2.344,200,480,93,573,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02:1,2026-09-09T01:58:36.139222+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r02,1,2.916,200,480,111,591,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03:1,2026-09-09T01:58:38.386404+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E2_ACTION__r03,1,2.237,200,480,83,563,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01:1,2026-09-09T01:58:41.104743+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r01,1,2.707,200,541,114,655,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02:1,2026-09-09T01:58:43.051570+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r02,1,1.935,200,541,96,637,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03:1,2026-09-09T01:58:45.295525+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E3_STATE__r03,1,2.235,200,541,99,640,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01:1,2026-09-09T01:58:46.721272+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r01,1,1.416,200,581,65,646,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02:1,2026-09-09T01:58:48.276386+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r02,1,1.546,200,581,65,646,,True,primary
+alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03:1,2026-09-09T01:58:49.987307+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__deepseek-v4-flash__E4_VERIFICATION__r03,1,1.702,200,581,65,646,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01:1,2026-09-09T01:58:52.315495+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r01,1,2.317,200,381,117,498,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02:1,2026-09-09T01:58:54.378044+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r02,1,2.053,200,381,100,481,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03:1,2026-09-09T01:58:57.575384+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E1_CLAIM__r03,1,3.187,200,381,125,506,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01:1,2026-09-09T01:59:00.830738+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r01,1,3.243,200,508,119,627,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02:1,2026-09-09T01:59:03.383137+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r02,1,2.534,200,508,110,618,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03:1,2026-09-09T01:59:07.108941+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E2_ACTION__r03,1,3.716,200,508,115,623,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01:1,2026-09-09T01:59:09.678364+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r01,1,2.553,200,569,104,673,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02:1,2026-09-09T01:59:12.022277+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r02,1,2.333,200,569,110,679,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03:1,2026-09-09T01:59:14.685144+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E3_STATE__r03,1,2.654,200,569,126,695,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01:1,2026-09-09T01:59:16.937925+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r01,1,2.234,200,609,79,688,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02:1,2026-09-09T01:59:18.779329+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r02,1,1.831,200,609,87,696,,True,primary
+alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03:1,2026-09-09T01:59:21.521467+00:00,verifier,dashscope,qwen-max,qwen-max,alternate_path_containment_01_false_containment_setup__gemini-3.7-flash__E4_VERIFICATION__r03,1,2.731,200,609,75,684,,True,primary

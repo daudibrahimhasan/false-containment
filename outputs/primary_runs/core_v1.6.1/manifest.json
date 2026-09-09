@@ -1,0 +1,19 @@
+{
+  "run_id": "core_v1.6.1",
+  "experiment_id": "falsecontain_core_v1",
+  "started_at": "2026-09-09T01:48:41.191861+00:00",
+  "git_commit": "3377c6178c739308ea1e8e516aca71c14373b3af",
+  "git_dirty": false,
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "requested_models": [
+    "deepseek-v4-flash",
+    "gemini-3.7-flash"
+  ],
+  "verifier_model": "qwen-max",
+  "config_hash": "987f51049e9be52f3d20a3cc3b400f953fc9bd9763babd9f3ce1b3083b4f159b",
+  "preregistration_hash": "140e2b79c4cf057ed938aba729c3fbdf4d11fd0a9a854fdf19317c3bbdbd09a2",
+  "incident_spec_hash": "b8d776f6c14da7522bb26cdd2a4446be3454456c76ed120081a41a23eb29614d",
+  "verifier_prompt_hash": "3520d07a5e4cf6a5b96d0949e18f0d6003adab88ede93d9d43253f01849e0775",
+  "secondary_subset_hash": "043ac30949d6d19221bf37e6e2614b309993aa08e93fe710e828b1cbbed781cf"
+}

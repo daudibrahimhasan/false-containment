@@ -1,0 +1,171 @@
+{
+  "run_id": "core_v1.6.1",
+  "definition": "Metrics use deterministic final simulator ground truth; uncertain verdicts are excluded from class-conditional accuracy/rates but included in overall abstention and calibration.",
+  "overall": {
+    "n": 192,
+    "false_containment_detection_rate": 0.7741935483870968,
+    "false_containment_miss_rate": 0.22580645161290322,
+    "true_resolution_accuracy": 0.8333333333333334,
+    "false_positive_rate": 0.16666666666666666,
+    "abstention_rate": 0.6510416666666666,
+    "balanced_accuracy": 0.803763440860215,
+    "resolution_precision": 0.8108108108108109,
+    "mean_confidence": 0.6752604166666667,
+    "accuracy": 0.28125,
+    "calibration_bins": [
+      {
+        "range": "0-59",
+        "n": 61,
+        "accuracy": 0.0,
+        "mean_confidence": 0.5
+      },
+      {
+        "range": "60-79",
+        "n": 67,
+        "accuracy": 0.029850746268656716,
+        "mean_confidence": 0.6432835820895523
+      },
+      {
+        "range": "80-100",
+        "n": 64,
+        "accuracy": 0.8125,
+        "mean_confidence": 0.87578125
+      }
+    ],
+    "expected_calibration_error": 0.39401041666666664
+  },
+  "by_evidence": {
+    "E1_CLAIM": {
+      "n": 48,
+      "false_containment_detection_rate": null,
+      "false_containment_miss_rate": null,
+      "true_resolution_accuracy": null,
+      "false_positive_rate": null,
+      "abstention_rate": 1.0,
+      "balanced_accuracy": null,
+      "resolution_precision": null,
+      "mean_confidence": 0.5083333333333333,
+      "accuracy": 0.0,
+      "calibration_bins": [
+        {
+          "range": "0-59",
+          "n": 44,
+          "accuracy": 0.0,
+          "mean_confidence": 0.5
+        },
+        {
+          "range": "60-79",
+          "n": 4,
+          "accuracy": 0.0,
+          "mean_confidence": 0.6
+        },
+        {
+          "range": "80-100",
+          "n": 0,
+          "accuracy": null,
+          "mean_confidence": null
+        }
+      ],
+      "expected_calibration_error": 0.5083333333333333
+    },
+    "E2_ACTION": {
+      "n": 48,
+      "false_containment_detection_rate": 0.0,
+      "false_containment_miss_rate": 1.0,
+      "true_resolution_accuracy": 1.0,
+      "false_positive_rate": 0.0,
+      "abstention_rate": 0.875,
+      "balanced_accuracy": 0.5,
+      "resolution_precision": 0.5,
+      "mean_confidence": 0.6260416666666666,
+      "accuracy": 0.0625,
+      "calibration_bins": [
+        {
+          "range": "0-59",
+          "n": 13,
+          "accuracy": 0.0,
+          "mean_confidence": 0.5
+        },
+        {
+          "range": "60-79",
+          "n": 29,
+          "accuracy": 0.0,
+          "mean_confidence": 0.6344827586206897
+        },
+        {
+          "range": "80-100",
+          "n": 6,
+          "accuracy": 0.5,
+          "mean_confidence": 0.8583333333333333
+        }
+      ],
+      "expected_calibration_error": 0.5635416666666667
+    },
+    "E3_STATE": {
+      "n": 48,
+      "false_containment_detection_rate": 0.42857142857142855,
+      "false_containment_miss_rate": 0.5714285714285714,
+      "true_resolution_accuracy": 0.3333333333333333,
+      "false_positive_rate": 0.6666666666666666,
+      "abstention_rate": 0.6666666666666666,
+      "balanced_accuracy": 0.38095238095238093,
+      "resolution_precision": 0.42857142857142855,
+      "mean_confidence": 0.6916666666666668,
+      "accuracy": 0.125,
+      "calibration_bins": [
+        {
+          "range": "0-59",
+          "n": 4,
+          "accuracy": 0.0,
+          "mean_confidence": 0.5
+        },
+        {
+          "range": "60-79",
+          "n": 31,
+          "accuracy": 0.06451612903225806,
+          "mean_confidence": 0.6548387096774193
+        },
+        {
+          "range": "80-100",
+          "n": 13,
+          "accuracy": 0.3076923076923077,
+          "mean_confidence": 0.8384615384615384
+        }
+      ],
+      "expected_calibration_error": 0.5666666666666667
+    },
+    "E4_VERIFICATION": {
+      "n": 48,
+      "false_containment_detection_rate": 1.0,
+      "false_containment_miss_rate": 0.0,
+      "true_resolution_accuracy": 1.0,
+      "false_positive_rate": 0.0,
+      "abstention_rate": 0.0625,
+      "balanced_accuracy": 1.0,
+      "resolution_precision": 1.0,
+      "mean_confidence": 0.875,
+      "accuracy": 0.9375,
+      "calibration_bins": [
+        {
+          "range": "0-59",
+          "n": 0,
+          "accuracy": null,
+          "mean_confidence": null
+        },
+        {
+          "range": "60-79",
+          "n": 3,
+          "accuracy": 0.0,
+          "mean_confidence": 0.6666666666666667
+        },
+        {
+          "range": "80-100",
+          "n": 45,
+          "accuracy": 1.0,
+          "mean_confidence": 0.8888888888888888
+        }
+      ],
+      "expected_calibration_error": 0.14583333333333337
+    }
+  }
+}

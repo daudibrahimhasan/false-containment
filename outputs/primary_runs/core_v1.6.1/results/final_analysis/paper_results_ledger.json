@@ -1,0 +1,312 @@
+{
+  "ledger_id": "paper-results-core-v1.6.1-v1",
+  "status": "frozen_by_content_hash",
+  "frozen_at_utc": "2026-09-09T19:06:54.743Z",
+  "run_id": "core_v1.6.1",
+  "scope": "Paper-facing results derived only from completed local artifacts. This ledger does not modify or replace scientific artifacts.",
+  "provenance": {
+    "run_validator_passed": true,
+    "scientific_complete": true,
+    "manifest_git_commit": "3377c6178c739308ea1e8e516aca71c14373b3af",
+    "current_repository_head_at_freeze": "97543e0d702fbea0e1cb9ded15f3d647c0134d5d",
+    "preregistration_tag": "preregistration-v1.6.1",
+    "preregistration_tag_commit": "f153a7d7d0a2f6dc0ca95129b4b9a08312008ead",
+    "manifest_git_dirty": false,
+    "primary_verifier": "qwen-max",
+    "source_agents": [
+      "deepseek-v4-flash",
+      "gemini-3.7-flash"
+    ],
+    "secondary_verifier": "nvidia/nemotron-3-super-120b-a12b"
+  },
+  "sample_structure": {
+    "incident_families": 4,
+    "matched_setups": 8,
+    "source_agent_models": 2,
+    "trajectories": 16,
+    "unique_evidence_packets": 64,
+    "primary_replicates_per_packet": 3,
+    "primary_judgments": 192,
+    "secondary_packets": 32,
+    "secondary_judgments": 32,
+    "paper_wording": "16 trajectories produced 64 unique evidence packets; each packet received three primary-verifier replicates, yielding 192 judgments."
+  },
+  "primary_integrity": {
+    "unique_judgments": 192,
+    "per_evidence_level": {
+      "E1_CLAIM": 48,
+      "E2_ACTION": 48,
+      "E3_STATE": 48,
+      "E4_VERIFICATION": 48
+    },
+    "per_source_agent": {
+      "deepseek-v4-flash": 96,
+      "gemini-3.7-flash": 96
+    },
+    "duplicates": 0,
+    "missing_jobs": 0,
+    "parse_failures": 0,
+    "leakage_failures": 0,
+    "truth_joined_rows": 192,
+    "truth_labels_valid": true
+  },
+  "primary_overall": {
+    "verdict_counts": {
+      "resolved": 37,
+      "unresolved": 30,
+      "uncertain": 125
+    },
+    "abstention": {
+      "numerator": 125,
+      "denominator": 192,
+      "rate": 0.6510416666666666,
+      "display": "65.1% (125/192)"
+    },
+    "coverage": {
+      "numerator": 67,
+      "denominator": 192,
+      "rate": 0.3489583333333333,
+      "display": "34.9% (67/192)"
+    },
+    "false_containment_detection": {
+      "numerator": 24,
+      "denominator": 31,
+      "rate": 0.7741935483870968,
+      "display": "77.4% (24/31)",
+      "denominator_definition": "Non-abstaining judgments with unresolved deterministic ground truth."
+    },
+    "false_containment_miss": {
+      "numerator": 7,
+      "denominator": 31,
+      "rate": 0.22580645161290322,
+      "display": "22.6% (7/31)"
+    },
+    "true_resolution_accuracy": {
+      "numerator": 30,
+      "denominator": 36,
+      "rate": 0.8333333333333334,
+      "display": "83.3% (30/36)",
+      "denominator_definition": "Non-abstaining judgments with resolved deterministic ground truth."
+    },
+    "false_positive_rate": {
+      "numerator": 6,
+      "denominator": 36,
+      "rate": 0.16666666666666666,
+      "display": "16.7% (6/36)"
+    },
+    "balanced_accuracy": {
+      "rate": 0.803763440860215,
+      "display": "80.4%",
+      "denominator_definition": "Mean of class-conditional rates among non-abstaining judgments."
+    },
+    "committed_judgment_accuracy": {
+      "numerator": 54,
+      "denominator": 67,
+      "rate": 0.8059701492537313,
+      "display": "80.6% (54/67)"
+    },
+    "resolution_precision": {
+      "numerator": 30,
+      "denominator": 37,
+      "rate": 0.8108108108108109,
+      "display": "81.1% (30/37)"
+    },
+    "high_confidence_errors": {
+      "threshold_inclusive": 80,
+      "count": 12
+    }
+  },
+  "primary_by_evidence": [
+    {
+      "evidence": "E1_CLAIM",
+      "n": 48,
+      "resolved": 0,
+      "unresolved": 0,
+      "uncertain": 48,
+      "abstention_rate": 1.0,
+      "coverage": 0.0,
+      "false_containment_detection": null,
+      "true_resolution_accuracy": null,
+      "false_positive_rate": null,
+      "balanced_accuracy": null,
+      "committed_accuracy": null,
+      "reporting_rule": "Class-conditional performance is N/A, not zero, because every judgment abstained."
+    },
+    {
+      "evidence": "E2_ACTION",
+      "n": 48,
+      "resolved": 6,
+      "unresolved": 0,
+      "uncertain": 42,
+      "abstention_rate": 0.875,
+      "coverage": 0.125,
+      "false_containment_detection": 0.0,
+      "true_resolution_accuracy": 1.0,
+      "false_positive_rate": 0.0,
+      "balanced_accuracy": 0.5,
+      "committed_accuracy": 0.5,
+      "unresolved_truth_nonabstaining_n": 3,
+      "resolved_truth_nonabstaining_n": 3
+    },
+    {
+      "evidence": "E3_STATE",
+      "n": 48,
+      "resolved": 7,
+      "unresolved": 9,
+      "uncertain": 32,
+      "abstention_rate": 0.6666666666666666,
+      "coverage": 0.3333333333333333,
+      "false_containment_detection": 0.42857142857142855,
+      "true_resolution_accuracy": 0.3333333333333333,
+      "false_positive_rate": 0.6666666666666666,
+      "balanced_accuracy": 0.38095238095238093,
+      "committed_accuracy": 0.375,
+      "unresolved_truth_nonabstaining_n": 7,
+      "resolved_truth_nonabstaining_n": 9
+    },
+    {
+      "evidence": "E4_VERIFICATION",
+      "n": 48,
+      "resolved": 24,
+      "unresolved": 21,
+      "uncertain": 3,
+      "abstention_rate": 0.0625,
+      "coverage": 0.9375,
+      "false_containment_detection": 1.0,
+      "true_resolution_accuracy": 1.0,
+      "false_positive_rate": 0.0,
+      "balanced_accuracy": 1.0,
+      "committed_accuracy": 1.0,
+      "unresolved_truth_nonabstaining_n": 21,
+      "resolved_truth_nonabstaining_n": 24
+    }
+  ],
+  "calibration": {
+    "population": "67 non-abstaining primary judgments",
+    "binning": "Preregistered inclusive integer-confidence bins: 0-20, 21-40, 41-60, 61-80, 81-100.",
+    "ece_exact": 0.06194029850746269,
+    "ece_display": "6.2%",
+    "bins": [
+      {"bin": "0-20", "n": 0, "mean_confidence": null, "empirical_accuracy": null, "absolute_gap": null},
+      {"bin": "21-40", "n": 0, "mean_confidence": null, "empirical_accuracy": null, "absolute_gap": null},
+      {"bin": "41-60", "n": 0, "mean_confidence": null, "empirical_accuracy": null, "absolute_gap": null},
+      {"bin": "61-80", "n": 9, "mean_confidence": 0.7666666666666667, "empirical_accuracy": 0.3333333333333333, "absolute_gap": 0.4333333333333334},
+      {"bin": "81-100", "n": 58, "mean_confidence": 0.8836206896551724, "empirical_accuracy": 0.8793103448275862, "absolute_gap": 0.004310344827586188}
+    ],
+    "interpretation_guard": "The pooled ECE is low, but support is sparse and uneven across bins; the 61-80 bin has a large gap. Do not use ECE alone to claim general safety or uniformly good calibration.",
+    "supersedes": "The earlier 39.4% value used a non-preregistered three-bin/all-row calculation and must not be reported as the preregistered ECE."
+  },
+  "permutation_negative_control": {
+    "status": "post-analysis preregistered negative-control diagnostic",
+    "statistic": "Pooled false-containment detection rate among non-abstaining assigned-unresolved judgments",
+    "seed": 20260909,
+    "permutations": 100000,
+    "method": "Permute deterministic truth labels within each family x source-agent stratum while preserving stratum label counts.",
+    "observed": 0.7741935483870968,
+    "null_mean": 0.44775060241811937,
+    "null_sd": 0.061846273041061425,
+    "null_q025": 0.3235294117647059,
+    "null_median": 0.4473684210526316,
+    "null_q975": 0.5714285714285714,
+    "count_null_ge_observed": 0,
+    "p_value_plus_one": 0.00000999990000099999,
+    "paper_display": "Observed false-containment detection 77.42%; null mean 44.78%; 95% null interval 32.35%-57.14%; one-sided plus-one p = 0.00001.",
+    "reporting_guard": "Do not describe this as balanced accuracy dropping to 50.0%, and do not present it as a new confirmatory hypothesis test."
+  },
+  "primary_replicate_agreement": {
+    "packets": 64,
+    "exact_three_way": {
+      "numerator": 60,
+      "denominator": 64,
+      "rate": 0.9375,
+      "display": "93.8% (60/64)"
+    },
+    "pairwise": {
+      "numerator": 184,
+      "denominator": 192,
+      "rate": 0.9583333333333334,
+      "display": "95.8% (184/192 replicate pairs)"
+    },
+    "fleiss_kappa": 0.9190300474433316,
+    "fleiss_kappa_display": "0.919",
+    "by_evidence": {
+      "E1_CLAIM": {"packets": 16, "exact_three_way": 1.0, "pairwise": 1.0, "fleiss_kappa": null},
+      "E2_ACTION": {"packets": 16, "exact_three_way": 0.875, "pairwise": 0.9166666666666666, "fleiss_kappa": 0.6190476190476194},
+      "E3_STATE": {"packets": 16, "exact_three_way": 0.875, "pairwise": 0.9166666666666666, "fleiss_kappa": 0.8330434782608697},
+      "E4_VERIFICATION": {"packets": 16, "exact_three_way": 1.0, "pairwise": 1.0, "fleiss_kappa": 1.0}
+    },
+    "reporting_guard": "The previously used 96.9% (62/64) value is incorrect and must not appear in the paper."
+  },
+  "secondary_verifier_descriptive": {
+    "status": "Derived read-only from the frozen 32 Nemotron rows joined to deterministic trajectory truth.",
+    "n": 32,
+    "truth_counts": {"resolved": 16, "unresolved": 16},
+    "verdict_counts": {"resolved": 5, "unresolved": 3, "uncertain": 24},
+    "coverage": {"numerator": 8, "denominator": 32, "rate": 0.25, "display": "25.0% (8/32)"},
+    "committed_accuracy": {"numerator": 7, "denominator": 8, "rate": 0.875, "display": "87.5% (7/8)"},
+    "false_containment_detection": {"numerator": 3, "denominator": 4, "rate": 0.75, "display": "75.0% (3/4)"},
+    "true_resolution_accuracy": {"numerator": 4, "denominator": 4, "rate": 1.0, "display": "100.0% (4/4)"},
+    "false_positive_rate": {"numerator": 0, "denominator": 4, "rate": 0.0, "display": "0.0% (0/4)"},
+    "balanced_accuracy": {"rate": 0.875, "display": "87.5%"},
+    "resolution_precision": {"numerator": 4, "denominator": 5, "rate": 0.8, "display": "80.0% (4/5)"},
+    "by_evidence": {
+      "E1_CLAIM": {"n": 8, "resolved": 0, "unresolved": 0, "uncertain": 8, "coverage": 0.0, "committed_accuracy": null},
+      "E2_ACTION": {"n": 8, "resolved": 0, "unresolved": 0, "uncertain": 8, "coverage": 0.0, "committed_accuracy": null},
+      "E3_STATE": {"n": 8, "resolved": 1, "unresolved": 0, "uncertain": 7, "coverage": 0.125, "committed_accuracy": 0.0},
+      "E4_VERIFICATION": {"n": 8, "resolved": 4, "unresolved": 3, "uncertain": 1, "coverage": 0.875, "committed_accuracy": 1.0}
+    },
+    "qwen_majority_comparison": {
+      "definition": "Nemotron verdict compared with the majority verdict across Qwen's three replicates for the same packet.",
+      "matches": 28,
+      "denominator": 32,
+      "agreement": 0.875,
+      "display": "87.5% (28/32)",
+      "by_evidence": {
+        "E1_CLAIM": "100.0% (8/8)",
+        "E2_ACTION": "75.0% (6/8)",
+        "E3_STATE": "75.0% (6/8)",
+        "E4_VERIFICATION": "100.0% (8/8)"
+      }
+    },
+    "reporting_guard": "This is a small fixed-subset robustness check, not evidence of verifier-independent performance."
+  },
+  "exploratory_stress": {
+    "cases": 4,
+    "narrow_false_confidence": {"numerator": 4, "denominator": 4, "rate": 1.0},
+    "broad_recovery": {"numerator": 4, "denominator": 4, "rate": 1.0},
+    "reporting_guard": "The broader checks are fixture-defined evidence strings, not executable broad simulator tests. Report the arm as exploratory and do not generalize a universal rate."
+  },
+  "required_paper_disclosures": [
+    "The completed run-primary path used fixed job-plan order and did not apply the preregistered seed-20260909 shuffle. Packet content and blinding were preserved, but execution ordering deviated.",
+    "E4 is a mechanism-specific critical-path operational check, while deterministic ground truth is conjunctive over several security postconditions.",
+    "The 192 judgments are three replicates over 64 unique packets, not 192 independent incident cases.",
+    "Class-conditional primary metrics exclude abstentions and must be interpreted with 34.9% coverage.",
+    "The secondary verifier is a 32-packet fixed-subset robustness check.",
+    "The stress arm is exploratory and its broad evidence is fixture-defined."
+  ],
+  "source_hashes_sha256": {
+    "outputs/primary_runs/core_v1.6.1/manifest.json": "5f3c8f1fc22b0e997adf7031c2cb55d552fec9c003aa631094f50237c13721b8",
+    "outputs/primary_runs/core_v1.6.1/results/primary_judgments.csv": "61f97cc9a30297d88e4ffb9b297f8920381c9559d65afd61af45babefa02b505",
+    "outputs/primary_runs/core_v1.6.1/results/high_confidence_errors.json": "892b226e481cf33a3a1e79e00448b1dac9f83876b09c789f3681def87f176e56",
+    "outputs/primary_runs/core_v1.6.1/results/final_analysis/overall_metrics.json": "03aaac2d22ea72a71a10622863d8a1aff4c94bd0dec1d088ba41c9e321f8d677",
+    "outputs/primary_runs/core_v1.6.1/results/final_analysis/evidence_level_metrics.csv": "5b31ac468ab4bbc429d4fdb19609c2f740f40ea81963bfe611f1f21df7a418be",
+    "outputs/primary_runs/core_v1.6.1/results/final_analysis/calibration_5bin.csv": "712000c2b06b18147f69980762255fd8c458d84df447a744c731fe2d4fe17b50",
+    "outputs/primary_runs/core_v1.6.1/results/final_analysis/permutation_negative_control.json": "2017b509f6a5b2f92febb39add3c6ca8c1c417336e3d8a34df1dc3e89ef0fff2",
+    "outputs/primary_runs/core_v1.6.1/results/final_analysis/replicate_agreement.json": "4af8cc1fc070466a817f740f1dccb12a2db435e864686373d9c3931a03c214cc",
+    "outputs/primary_runs/core_v1.6.1/results/final_analysis/truth_join_audit.json": "da3e8b843184bbb3842405d8c5b4a322d40bc55ff9dc743c278d694d1076fe92",
+    "outputs/primary_runs/core_v1.6.1/secondary_verifier/results/rows.csv": "af3e022b24b10ba1eff5dd97b3af81c586ca3ed716512ba9dcde33e508eec56d",
+    "outputs/stress_scientific/results/rows.csv": "dfba182d24a25dfe6f60ec0da564c30a7fcb9872816d64896e0884ddfcf3e147",
+    "outputs/stress_scientific/results/metrics.json": "339d6f072d6716e2837006bd0538483f34f02b9a476bff8dfe2b63441ab737f2"
+  },
+  "aggregate_source_hashes": {
+    "trajectories": {
+      "count": 16,
+      "sha256": "af99cae1464230ed08d6c6591cad3eae7496b0224d935aa68ef809668798cd90"
+    },
+    "packets": {
+      "count": 64,
+      "sha256": "87108ce8c6384fe28369b093dfbfa91a6736c36bac31250d9ecb0b13dc18d0d2"
+    },
+    "algorithm": "SHA-256 of UTF-8 sorted relative_path<TAB>file_sha256<LF> records."
+  }
+}

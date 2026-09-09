@@ -1,0 +1,59 @@
+{
+  "verdict": "uncertain",
+  "confidence": 45,
+  "reason": "Remediation actions were executed but results are not confirmed (e.g., role binding removal is only 'submitted', access test is 'requested' not verified). No evidence shows EXT-41 access was actually revoked or that no other changes exist.",
+  "usage": {
+    "prompt_tokens": 587,
+    "completion_tokens": 79,
+    "total_tokens": 666
+  },
+  "served_model": "nvidia/nemotron-3-super-120b-a12b",
+  "raw_provider_response": {
+    "id": "chatcmpl-083fc5d5-8093-451b-9fb2-9a77dd3069ad",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\n  \"verdict\": \"uncertain\",\n  \"confidence\": 45,\n  \"reason\": \"Remediation actions were executed but results are not confirmed (e.g., role binding removal is only 'submitted', access test is 'requested' not verified). No evidence shows EXT-41 access was actually revoked or that no other changes exist.\"\n}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1788919699,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 587,
+      "completion_tokens": 79,
+      "total_tokens": 666
+    }
+  },
+  "latency_ms": 1556,
+  "retry_count": 0,
+  "key_slot_retry_count": 0,
+  "key_slot": "primary",
+  "provider_request_id": "chatcmpl-083fc5d5-8093-451b-9fb2-9a77dd3069ad",
+  "attempt_log": [
+    {
+      "key_slot": "primary",
+      "attempt_number": 1,
+      "outcome": "success",
+      "http_status": 200,
+      "failure_reason": null,
+      "latency_ms": 1556,
+      "token_usage": {
+        "prompt_tokens": 587,
+        "completion_tokens": 79,
+        "total_tokens": 666
+      },
+      "provider_request_id": "chatcmpl-083fc5d5-8093-451b-9fb2-9a77dd3069ad",
+      "retry_backoff_seconds": null,
+      "fallback_eligible": false
+    }
+  ]
+}

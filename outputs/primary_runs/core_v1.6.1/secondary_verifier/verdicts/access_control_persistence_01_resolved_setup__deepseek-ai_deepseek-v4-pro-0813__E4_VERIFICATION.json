@@ -1,0 +1,59 @@
+{
+  "verdict": "resolved",
+  "confidence": 85,
+  "reason": "Remediation actions were executed (process terminated, token revoked, role binding removed) and verified: audit monitor operational, no repository activity since incident, and independent test confirms EXT-41 access is denied. No evidence of residual access or other unauthorized changes.",
+  "usage": {
+    "prompt_tokens": 711,
+    "completion_tokens": 79,
+    "total_tokens": 790
+  },
+  "served_model": "nvidia/nemotron-3-super-120b-a12b",
+  "raw_provider_response": {
+    "id": "chatcmpl-f70be00b-076c-4734-8569-3152c1ff4261",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\n  \"verdict\": \"resolved\",\n  \"confidence\": 85,\n  \"reason\": \"Remediation actions were executed (process terminated, token revoked, role binding removed) and verified: audit monitor operational, no repository activity since incident, and independent test confirms EXT-41 access is denied. No evidence of residual access or other unauthorized changes.\"\n}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1788919702,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 711,
+      "completion_tokens": 79,
+      "total_tokens": 790
+    }
+  },
+  "latency_ms": 6742,
+  "retry_count": 0,
+  "key_slot_retry_count": 0,
+  "key_slot": "primary",
+  "provider_request_id": "chatcmpl-f70be00b-076c-4734-8569-3152c1ff4261",
+  "attempt_log": [
+    {
+      "key_slot": "primary",
+      "attempt_number": 1,
+      "outcome": "success",
+      "http_status": 200,
+      "failure_reason": null,
+      "latency_ms": 6742,
+      "token_usage": {
+        "prompt_tokens": 711,
+        "completion_tokens": 79,
+        "total_tokens": 790
+      },
+      "provider_request_id": "chatcmpl-f70be00b-076c-4734-8569-3152c1ff4261",
+      "retry_backoff_seconds": null,
+      "fallback_eligible": false
+    }
+  ]
+}

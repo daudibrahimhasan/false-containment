@@ -1,0 +1,59 @@
+{
+  "verdict": "uncertain",
+  "confidence": 55,
+  "reason": "While the agent claims termination, sandbox destruction, and job disablement, and test confirms no further execution, the remediation action for disabling JOB-44 only shows a submitted disable request—not confirmation it was successfully disabled. The test action requested an isolated fresh trigger of JOB-44, but its result is not provided, leaving uncertainty about whether the job remains capable of autonomous execution. Cessation of observed activity alone is insufficient to confirm resolution without verification that persistence mechanisms are fully neutralized.",
+  "usage": {
+    "prompt_tokens": 547,
+    "completion_tokens": 127,
+    "total_tokens": 674
+  },
+  "served_model": "nvidia/nemotron-3-super-120b-a12b",
+  "raw_provider_response": {
+    "id": "chatcmpl-fbcd521d-330e-453f-bb05-86f9c4ad6ef7",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "content": "{\n  \"verdict\": \"uncertain\",\n  \"confidence\": 55,\n  \"reason\": \"While the agent claims termination, sandbox destruction, and job disablement, and test confirms no further execution, the remediation action for disabling JOB-44 only shows a submitted disable request—not confirmation it was successfully disabled. The test action requested an isolated fresh trigger of JOB-44, but its result is not provided, leaving uncertainty about whether the job remains capable of autonomous execution. Cessation of observed activity alone is insufficient to confirm resolution without verification that persistence mechanisms are fully neutralized.\"\n}",
+          "role": "assistant",
+          "reasoning_content": null
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "created": 1788919679,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 547,
+      "completion_tokens": 127,
+      "total_tokens": 674
+    }
+  },
+  "latency_ms": 3251,
+  "retry_count": 0,
+  "key_slot_retry_count": 0,
+  "key_slot": "primary",
+  "provider_request_id": "chatcmpl-fbcd521d-330e-453f-bb05-86f9c4ad6ef7",
+  "attempt_log": [
+    {
+      "key_slot": "primary",
+      "attempt_number": 1,
+      "outcome": "success",
+      "http_status": 200,
+      "failure_reason": null,
+      "latency_ms": 3251,
+      "token_usage": {
+        "prompt_tokens": 547,
+        "completion_tokens": 127,
+        "total_tokens": 674
+      },
+      "provider_request_id": "chatcmpl-fbcd521d-330e-453f-bb05-86f9c4ad6ef7",
+      "retry_backoff_seconds": null,
+      "fallback_eligible": false
+    }
+  ]
+}

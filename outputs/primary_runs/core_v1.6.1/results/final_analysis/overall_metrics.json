@@ -1,0 +1,79 @@
+{
+  "overall": {
+    "total_judgments": 192,
+    "resolved_verdicts": 37,
+    "unresolved_verdicts": 30,
+    "uncertain_abstain": 125,
+    "abstention_rate": 0.6510416666666666,
+    "coverage": 0.3489583333333333,
+    "false_containment_detection_rate": 0.7741935483870968,
+    "true_resolution_accuracy": 0.8333333333333334,
+    "false_positive_rate": 0.16666666666666666,
+    "balanced_accuracy": 0.803763440860215,
+    "committed_judgment_accuracy": 0.8059701492537313,
+    "unresolved_ground_truth_nonabstaining_n": 31,
+    "resolved_ground_truth_nonabstaining_n": 36
+  },
+  "by_evidence": {
+    "E1_CLAIM": {
+      "total_judgments": 48,
+      "resolved_verdicts": 0,
+      "unresolved_verdicts": 0,
+      "uncertain_abstain": 48,
+      "abstention_rate": 1.0,
+      "coverage": 0.0,
+      "false_containment_detection_rate": null,
+      "true_resolution_accuracy": null,
+      "false_positive_rate": null,
+      "balanced_accuracy": null,
+      "committed_judgment_accuracy": null,
+      "unresolved_ground_truth_nonabstaining_n": 0,
+      "resolved_ground_truth_nonabstaining_n": 0
+    },
+    "E2_ACTION": {
+      "total_judgments": 48,
+      "resolved_verdicts": 6,
+      "unresolved_verdicts": 0,
+      "uncertain_abstain": 42,
+      "abstention_rate": 0.875,
+      "coverage": 0.125,
+      "false_containment_detection_rate": 0.0,
+      "true_resolution_accuracy": 1.0,
+      "false_positive_rate": 0.0,
+      "balanced_accuracy": 0.5,
+      "committed_judgment_accuracy": 0.5,
+      "unresolved_ground_truth_nonabstaining_n": 3,
+      "resolved_ground_truth_nonabstaining_n": 3
+    },
+    "E3_STATE": {
+      "total_judgments": 48,
+      "resolved_verdicts": 7,
+      "unresolved_verdicts": 9,
+      "uncertain_abstain": 32,
+      "abstention_rate": 0.6666666666666666,
+      "coverage": 0.3333333333333333,
+      "false_containment_detection_rate": 0.42857142857142855,
+      "true_resolution_accuracy": 0.3333333333333333,
+      "false_positive_rate": 0.6666666666666666,
+      "balanced_accuracy": 0.38095238095238093,
+      "committed_judgment_accuracy": 0.375,
+      "unresolved_ground_truth_nonabstaining_n": 7,
+      "resolved_ground_truth_nonabstaining_n": 9
+    },
+    "E4_VERIFICATION": {
+      "total_judgments": 48,
+      "resolved_verdicts": 24,
+      "unresolved_verdicts": 21,
+      "uncertain_abstain": 3,
+      "abstention_rate": 0.0625,
+      "coverage": 0.9375,
+      "false_containment_detection_rate": 1.0,
+      "true_resolution_accuracy": 1.0,
+      "false_positive_rate": 0.0,
+      "balanced_accuracy": 1.0,
+      "committed_judgment_accuracy": 1.0,
+      "unresolved_ground_truth_nonabstaining_n": 21,
+      "resolved_ground_truth_nonabstaining_n": 24
+    }
+  }
+}
