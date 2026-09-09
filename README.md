@@ -2,6 +2,8 @@
 
 This repository measures when an AI incident-response agent reports containment even though deterministic simulator postconditions show that the compromise remains possible.
 
+![FalseContain-Bench](assets/false_containment_banner.jpg)
+
 The preregistered core design is 4 incident families x 2 matched cases x 2 agent models x 4 cumulative evidence conditions x 3 verifier replicates = 192 verifier judgments. This requires 16 agent generations: one trajectory per case and agent, reused across four evidence packets.
 
 The four team-authored family specifications have been converted into eight executable matched setups under `incidents/`. The original supplied Markdown is preserved under `references/team_incident_specs/`.
