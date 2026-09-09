@@ -370,7 +370,9 @@ class APIClient:
         if spec.get("thinking") is False and provider == "nvidia":
             body["chat_template_kwargs"] = {"enable_thinking": False}
         if provider == "tokenrouter":
-            body["chat_template_kwargs"] = {"reasoning_effort": spec.get("reasoning_effort", "low")}
+            effort = spec.get("reasoning_effort", "low")
+            body["reasoning_effort"] = effort
+            body["chat_template_kwargs"] = {"reasoning_effort": effort}
         encoded_body = json.dumps(body).encode()
         key_slots = [("primary", primary_name, primary_key)]
         fallback_name = spec.get("fallback_api_key_env")
