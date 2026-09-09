@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import platform
+import shutil
 import subprocess
 import sys
 import time
@@ -197,6 +198,9 @@ def run_primary(root: Path, *, dry_run: bool = False, resume: bool = False, outp
     checkpoint_path = run_root / "checkpoint.json"
     checkpoint = read_json(checkpoint_path) if checkpoint_path.exists() else {"trajectories": [], "judgments": []}
     client = MockClient() if dry_run else APIClient(config)
+    pilot_source = root / "outputs" / "agent_pilot_real" / f"preregistration-v{config['preregistration_version']}"
+    if not dry_run and not pilot_source.exists():
+        raise ValueError(f"completed pilot artifact directory is missing: {pilot_source}")
     console = Console()
     _show_header(console, chosen_id, config, manifest["started_at"])
     events_path = run_root / "run_events.csv"
@@ -220,6 +224,19 @@ def run_primary(root: Path, *, dry_run: bool = False, resume: bool = False, outp
             trajectory_path = run_root / "trajectories" / f"{trajectory_id}.json"
             if trajectory_path.exists():
                 trajectory = read_json(trajectory_path)
+            elif not dry_run:
+                source_path = pilot_source / "trajectories" / f"{trajectory_id}.json"
+                if not source_path.exists():
+                    raise ValueError(f"primary run refuses to regenerate missing pilot trajectory: {trajectory_id}")
+                source = read_json(source_path)
+                agent_result = source["raw_and_parsed_agent_result"]
+                trajectory = {"trajectory_id": trajectory_id, "case_id": case["case_id"], "family": case["family"], "agent": agent, "agent_result": agent_result, "simulation": {"final_state": source["final_state"], "action_records": source["action_records"], "telemetry": [], "postcondition_results": [], "ground_truth": source["deterministic_ground_truth"]}, "source_pilot_trajectory": True, "created_at": source.get("created_at", _utc())}
+                for level in EVIDENCE_LEVELS:
+                    source_packet = pilot_source / "packets" / f"{trajectory_id}__{level}.json"
+                    if not source_packet.exists():
+                        raise ValueError(f"primary run refuses to regenerate missing pilot packet: {trajectory_id}__{level}")
+                    _atomic_json(run_root / "packets" / source_packet.name, read_json(source_packet))
+                _atomic_json(trajectory_path, trajectory)
             else:
                 agent_result = client.agent(case, agent)
                 sim = simulate(case, agent_result["selected_action_ids"])
@@ -241,11 +258,13 @@ def run_primary(root: Path, *, dry_run: bool = False, resume: bool = False, outp
             continue
         trajectory = trajectory_cache[job["trajectory_id"]]
         case = next(item for item in cases if item["case_id"] == job["case_id"])
-        sim = type("Sim", (), trajectory["simulation"])()
         packet_path = run_root / "packets" / f"{job['packet_id']}.json"
         if packet_path.exists():
             packet = read_json(packet_path)
         else:
+            if trajectory.get("source_pilot_trajectory"):
+                raise ValueError(f"primary run refuses to regenerate pilot packet: {job['packet_id']}")
+            sim = type("Sim", (), trajectory["simulation"])()
             packet = build_packet(case, trajectory["agent_result"], sim, job["level"])
             _atomic_json(packet_path, packet)
         started = time.perf_counter()
