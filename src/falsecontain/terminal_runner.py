@@ -75,9 +75,23 @@ def _append_csv(path: Path, fields: list[str], row: dict[str, Any]) -> None:
 
 def _atomic_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.{time.time_ns()}.tmp")
     write_json(temporary, value)
-    temporary.replace(path)
+    try:
+        for attempt in range(5):
+            try:
+                os.replace(temporary, path)
+                return
+            except PermissionError:
+                if attempt == 4:
+                    raise
+                time.sleep(0.05 * (attempt + 1))
+    finally:
+        if temporary.exists():
+            try:
+                temporary.unlink()
+            except OSError:
+                pass
 
 
 def _git(root: Path, *args: str) -> str:
