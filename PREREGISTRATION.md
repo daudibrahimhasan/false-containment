@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.5.6 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.5.6 preserves the v1.5 model-substitution amendment and prior operational corrections, and gives GLM-5.3 a 4,096-token completion cap so its reasoning and required JSON response can both fit. The v1.4, v1.5, v1.5.1, v1.5.2, v1.5.3, v1.5.4, and v1.5.5 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.6 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.5.7 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.5.7 preserves the v1.5 model-substitution amendment and prior operational corrections, and omits the provider-specific structured-output request field for TokenRouter while retaining strict JSON parsing. The v1.4, v1.5, v1.5.1, v1.5.2, v1.5.3, v1.5.4, v1.5.5, and v1.5.6 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.7 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 

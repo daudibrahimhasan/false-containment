@@ -360,7 +360,9 @@ class APIClient:
         primary_name, primary_key = self._api_key(provider, spec)
         if not primary_key:
             raise APIRequestFailure(f"{primary_name} is empty", [])
-        body: dict[str, Any] = {"model": spec["model"], "messages": messages, "max_tokens": spec.get("max_tokens", 1000), "response_format": {"type": "json_object"}}
+        body: dict[str, Any] = {"model": spec["model"], "messages": messages, "max_tokens": spec.get("max_tokens", 1000)}
+        if provider != "tokenrouter":
+            body["response_format"] = {"type": "json_object"}
         if "temperature" in spec:
             body["temperature"] = spec["temperature"]
         if "top_p" in spec:
