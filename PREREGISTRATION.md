@@ -1,7 +1,7 @@
 # Preregistration: False Containment Core Experiment
 
-Status: **FROZEN v1.5.3 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
-Version 1.5.3 preserves the v1.5 model-substitution amendment and prior operational corrections, and aligns TokenRouter's request with the declared disabled-thinking setting. The v1.4, v1.5, v1.5.1, and v1.5.2 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.3 primary- or secondary-verifier judgment exists.
+Status: **FROZEN v1.5.4 ON 2026-09-09; FRESH GLM PILOT REQUIRED, NO VERIFIER CALLS**
+Version 1.5.4 preserves the v1.5 model-substitution amendment and prior operational corrections, and uses GLM-5.3's supported low reasoning-effort setting. The v1.4, v1.5, v1.5.1, v1.5.2, and v1.5.3 tags, DeepSeek pilot, and all prior artifacts remain preserved. No v1.5.4 primary- or secondary-verifier judgment exists.
 
 ## Research question and core sample
 
@@ -29,7 +29,7 @@ Agent 1:
 - Endpoint: `https://api.tokenrouter.com/v1/chat/completions`
 - Temperature: `0.7`
 - Maximum completion tokens: `1400`
-- Thinking: disabled through `chat_template_kwargs.enable_thinking=false`
+- Reasoning effort: `low`, sent through `chat_template_kwargs.reasoning_effort=low` because GLM-5.3 does not support disabled reasoning
 
 Agent 2:
 
