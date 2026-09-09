@@ -154,8 +154,12 @@ def run_primary(root: Path, *, dry_run: bool = False, resume: bool = False, outp
     if errors:
         raise ValueError("Design validation failed:\n- " + "\n- ".join(errors))
     if not dry_run:
-        if not config.get("scientific_lock") or not config.get("pilot_completed"):
-            raise ValueError("locked scientific config and completed pilot are required")
+        pilot_state_path = root / "outputs" / "agent_pilot_real" / f"preregistration-v{config['preregistration_version']}" / "results" / "run_state.json"
+        pilot_completed = False
+        if pilot_state_path.exists():
+            pilot_completed = bool(read_json(pilot_state_path).get("pilot_completed"))
+        if not config.get("scientific_lock") or not pilot_completed:
+            raise ValueError("locked scientific config and completed pilot run-state are required")
     load_env(root / ".env")
     chosen_id = run_id or ("dry_run_" if dry_run else "core_") + datetime.now().strftime("%Y%m%d_%H%M%S")
     run_root = (output or root / "outputs" / "primary_runs") / chosen_id
