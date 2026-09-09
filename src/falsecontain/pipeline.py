@@ -563,18 +563,41 @@ def run_secondary(root: Path, mock: bool = False, fixture: bool = False) -> dict
     load_env(root / ".env")
     client: Any = MockClient() if mock else APIClient(config)
     mode = "fixture_mock" if fixture and mock else "scientific"
-    primary_root = root / "outputs" / mode
+    if fixture:
+        primary_root = root / "outputs" / mode
+    else:
+        # The terminal primary runner stores the completed scientific packets
+        # under outputs/primary_runs/<run_id>. Keep the frozen subset IDs as
+        # the scientific identifiers, while resolving the older DeepSeek
+        # provider/model spelling to the packet filename actually emitted by
+        # the locked runner.
+        primary_runs = []
+        for candidate in (root / "outputs" / "primary_runs").glob("*"):
+            status_path = candidate / "status.json"
+            if status_path.exists():
+                try:
+                    if read_json(status_path).get("scientific_complete") is True:
+                        primary_runs.append(candidate)
+                except (OSError, ValueError, TypeError):
+                    pass
+        if len(primary_runs) != 1:
+            raise ValueError(f"expected exactly one completed primary run for secondary verification; found {len(primary_runs)}")
+        primary_root = primary_runs[0]
     secondary_root = primary_root / "secondary_verifier"
     rows = []
     for packet_id in packet_ids:
         packet_path = primary_root / "packets" / f"{packet_id}.json"
+        source_packet_id = packet_id
+        if not packet_path.exists() and "__deepseek-ai_deepseek-v4-pro-0813__" in packet_id:
+            source_packet_id = packet_id.replace("__deepseek-ai_deepseek-v4-pro-0813__", "__deepseek-v4-flash__")
+            packet_path = primary_root / "packets" / f"{source_packet_id}.json"
         if not packet_path.exists():
             raise ValueError(f"selected packet does not exist: {packet_id}")
         packet = read_json(packet_path)
         verdict_path = secondary_root / "verdicts" / f"{packet_id}.json"
         verdict = read_json(verdict_path) if verdict_path.exists() else client.verifier(packet, spec)
         write_json(verdict_path, verdict)
-        rows.append({"packet_id": packet_id, "case_id": packet["case_id"], "family": packet["incident_family"], "evidence_level": packet["evidence_level"], "secondary_verifier_model": spec["model"], "verdict": verdict["verdict"], "confidence": verdict["confidence"], "prompt_tokens": verdict.get("usage", {}).get("prompt_tokens"), "completion_tokens": verdict.get("usage", {}).get("completion_tokens")})
+        rows.append({"packet_id": packet_id, "source_packet_id": source_packet_id, "case_id": packet["case_id"], "family": packet["incident_family"], "evidence_level": packet["evidence_level"], "secondary_verifier_model": spec["model"], "verdict": verdict["verdict"], "confidence": verdict["confidence"], "prompt_tokens": verdict.get("usage", {}).get("prompt_tokens"), "completion_tokens": verdict.get("usage", {}).get("completion_tokens")})
     write_json(secondary_root / "results" / "rows.json", rows)
     _write_csv(secondary_root / "results" / "rows.csv", rows)
     return {"secondary_verifier": spec["model"], "selected_packets": len(packet_ids), "completed": len(rows)}
