@@ -549,8 +549,12 @@ def run(root: Path, fixture: bool = False, mock: bool = False, dry_run: bool = F
 
 def run_secondary(root: Path, mock: bool = False, fixture: bool = False) -> dict[str, Any]:
     config = read_json(root / "config" / "experiment.json")
-    if not fixture and (not config.get("scientific_lock") or not config.get("pilot_completed")):
+    if not fixture and not config.get("scientific_lock"):
         raise ValueError("scientific secondary execution requires the frozen design and completed agent pilot")
+    if not fixture:
+        pilot_state = root / "outputs" / "agent_pilot_real" / f"preregistration-v{config['preregistration_version']}" / "results" / "run_state.json"
+        if not pilot_state.exists() or not read_json(pilot_state).get("pilot_completed"):
+            raise ValueError("scientific secondary execution requires the frozen design and completed agent pilot")
     spec = config.get("secondary_verifier")
     if not spec:
         raise ValueError("secondary_verifier is not configured")
