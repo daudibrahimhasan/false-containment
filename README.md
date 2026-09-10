@@ -8,6 +8,20 @@ The preregistered core design is 4 incident families x 2 matched cases x 2 agent
 
 The four team-authored family specifications have been converted into eight executable matched setups under `incidents/`. The original supplied Markdown is preserved under `references/team_incident_specs/`.
 
+## Start Here / Final Submission
+
+For the current post-run submission package, start with:
+
+- [Main paper](paper/false_containment_main.pdf)
+- [Full paper and supplementary materials](paper/false_containment_full.pdf)
+- [Final results ledger](docs/FINAL_RESULTS.md)
+- [Post-run errata and disclosures](docs/POST_RUN_ERRATA.md)
+- [Reproducibility instructions](docs/REPRODUCIBILITY.md)
+- [Frozen paper-results ledger](outputs/primary_runs/core_v1.6.1/results/final_analysis/paper_results_ledger.md)
+- [Canonical completed run](outputs/primary_runs/core_v1.6.1/)
+
+The frozen `preregistration-v1.6.1` tag is historical provenance. `core_v1.6.1` is the completed final run. The current README and docs are post-run packaging and navigation documentation; earlier amendments, provider paths, and model configurations are historical unless the final-results docs say otherwise.
+
 ## Prepared components
 
 - Deterministic boolean state-machine simulator
